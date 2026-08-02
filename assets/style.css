@@ -6,46 +6,40 @@
   --signal:#6C93FF;
   --signal-soft:rgba(108,147,255,.14);
 
-  /* The Outfield / The Night Game — album art gradient */
+  /* The Outfield / The Night Game — album art gradient.
+     Stays in the deep-blue range the whole way down (no fade to the
+     lighter hazy tones that washed out text before) — the "sky" only
+     brightens again right at the seam into Contact, handled by
+     --footer-gradient below, not here. */
   --night-gradient: linear-gradient(
     180deg,
     #16324a 0%,
-    #24507a 16%,
-    #3f6f8c 30%,
-    #6c8791 42%,
-    #7c8a8a 50%,
-    #4b4f52 58%,
-    #1c1f24 70%,
-    #060708 100%
+    #1b3d59 50%,
+    #24507a 100%
   );
-  /* Same gradient, reversed (dark at the top edge, blue at the
-     bottom) so it seams cleanly into the flat dark body above it. */
+  /* Lives at the very top of the footer: a brief bright flash right
+     at the About→Contact seam, diving straight to black within the
+     first fifth of the footer's height — so the glow is a moment,
+     and everything below it (all the actual Contact content) sits on
+     solid dark for stars/text contrast. */
   --footer-gradient: linear-gradient(
-    0deg,
-    #16324a 0%,
-    #24507a 16%,
-    #3f6f8c 30%,
-    #6c8791 42%,
-    #7c8a8a 50%,
-    #4b4f52 58%,
-    #1c1f24 70%,
-    #060708 100%
+    180deg,
+    #7c8a8a 0%,
+    #4b4f52 8%,
+    #1c1f24 16%,
+    #060708 28%,
+    #000000 100%
   );
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
-  /* The gradient only paints the first viewport height, behind the
-     hero. Below that, background-color takes over — a flat, solid
-     dark fill (matching the gradient's own darkest stop, so there's
-     no visible seam) keeps every section's text on consistent,
-     reliable contrast regardless of how tall the page gets. The
-     color movement lives in the footer instead (see .footer-gradient
-     below) — nothing with text on it sits on a moving gradient. */
-  background-color:#060708;
+  /* Blue gradient runs the full page. Contact gets its own gradient
+     (see footer{} below) that flashes bright at the seam then goes
+     solid black, rather than picking up this gradient's tail. */
   background-image:var(--night-gradient);
   background-repeat:no-repeat;
-  background-size:100% 100vh;
+  background-size:100% 100%;
   color:var(--ink);
   font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing:antialiased;
@@ -238,14 +232,6 @@ footer{
   position:relative; overflow:hidden;
   padding:100px 0 32px;
   background:var(--footer-gradient);
-}
-.footer-bg{
-  position:absolute; left:0; right:0; top:50%; transform:translateY(-50%);
-  text-align:center; white-space:nowrap;
-  font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight:700; font-size:min(28vw, 340px); line-height:1;
-  color:rgba(255,255,255,.05);
-  pointer-events:none; z-index:0; user-select:none;
 }
 .footer-dots{position:absolute; inset:0; pointer-events:none; z-index:0;}
 .footer-dots i{
