@@ -51,3 +51,16 @@
   sections.forEach(s => observer.observe(s));
   if (sections[0]) setActive(sections[0].id);
 })();
+
+/* ── FOOTER LOCAL TIME ────────────────────────────────── */
+(function () {
+  const el = document.getElementById('local-time');
+  if (!el) return;
+
+  function tick() {
+    el.textContent = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+  }
+
+  tick();
+  setInterval(tick, 30000);
+})();

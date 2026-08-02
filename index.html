@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>[Your Name] — Product Work</title>
 <meta name="description" content="Product management case studies and writing by [Your Name].">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -142,15 +144,44 @@
 </section>
 
 <footer id="contact">
-  <div class="wrap">
-    <div class="row">
-      <h2>let&rsquo;s talk about what you&rsquo;re building.</h2>
-      <div class="footer-links">
-        <a href="mailto:you@example.com">email</a>
-        <a href="#">linkedin ↗</a>
+  <div class="footer-bg" aria-hidden="true">TALK</div>
+  <div class="footer-dots" aria-hidden="true">
+    <i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="wrap footer-top">
+    <div class="footer-main">
+      <div class="eyebrow">Contact</div>
+      <h2>let&rsquo;s build something<br>that matters.</h2>
+      <a class="footer-email" href="mailto:you@example.com">
+        <span>you@example.com</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <p class="footer-note">care about <strong>design</strong>, <strong>impact</strong>, and products that actually
+        ship? you know where to find me.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <div class="eyebrow">Explore</div>
+        <a href="#work">work</a>
+        <a href="#about">about</a>
+        <a href="repository.html">repository</a>
         <a href="#">résumé ↓</a>
       </div>
+      <div class="footer-col">
+        <div class="eyebrow">Connect</div>
+        <a href="#">linkedin ↗</a>
+        <a href="mailto:you@example.com">email ↗</a>
+      </div>
+      <div class="footer-col footer-status">
+        <div class="eyebrow">Status</div>
+        <span class="status-line"><i class="status-dot"></i>open to new work</span>
+        <span class="status-line">[City / Region]</span>
+        <span class="status-line">local time <strong id="local-time">—</strong></span>
+      </div>
     </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <a href="index.html" class="logo">[yourname].</a>
     <div class="copyright">
       <span>© 2026 [Your Name]</span>
       <span>built with care, shipped like a product.</span>

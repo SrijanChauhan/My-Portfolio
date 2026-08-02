@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Repository — [Your Name]</title>
-<meta name="description" content="A working library of product thinking: essays, frameworks, teardowns and notes.">
+<meta name="description" content="A working library of writing on product, philosophy, music, and art.">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -34,8 +36,8 @@
   <div class="eyebrow">The Repository</div>
   <h1>Everything I&rsquo;ve figured out, <em>written down</em>.</h1>
   <p class="hero-sub">
-    A working library — essays on product philosophy, frameworks I actually use,
-    teardowns, and reading notes. Updated as I learn. Search it, filter it, steal from it.
+    Writing on product, philosophy, music, and art. Each entry links out to where it
+    actually lives — Substack, Medium, wherever — this page is just the index.
   </p>
 </section>
 
@@ -92,14 +94,19 @@
 <script>
 /* ─────────────────────────────────────────────────────────────
    ADD ENTRIES HERE. This array is the whole database.
-   kind: "Essay" | "Framework" | "Teardown" | "Notes" | "Talk"
-   url:  link to the full piece (own page, Substack, Medium, PDF…)
+   category: "Product" | "Philosophy" | "Music" | "Art"
+   kind:     whatever best describes the piece — shown as small
+             context text, not filterable (category is the one
+             facet that matters at this scale).
+   url:      link to the full piece — it lives elsewhere
+             (Substack, Medium, a PDF…), this page just indexes it.
    ───────────────────────────────────────────────────────────── */
 const ENTRIES = [
   {
     date: "Aug 2026",
     title: "[Why most roadmaps are wish lists, not strategy]",
     blurb: "[Two lines on the argument. Make the claim, not the topic — a reader should know what you believe before they click.]",
+    category: "Product",
     kind: "Essay",
     tags: ["strategy", "roadmapping"],
     url: "#"
@@ -108,6 +115,7 @@ const ENTRIES = [
     date: "Jul 2026",
     title: "[The one-question test I run before any feature ships]",
     blurb: "[What the framework does and when to reach for it. Keep it concrete.]",
+    category: "Product",
     kind: "Framework",
     tags: ["discovery", "prioritisation"],
     url: "#"
@@ -116,34 +124,54 @@ const ENTRIES = [
     date: "Jul 2026",
     title: "[Teardown: how {Product} handles first-run onboarding]",
     blurb: "[What they got right, what you'd change, and the principle you extracted.]",
+    category: "Product",
     kind: "Teardown",
     tags: ["onboarding", "ux"],
     url: "#"
   },
   {
     date: "Jun 2026",
-    title: "[Notes on {Book / Talk}]",
-    blurb: "[The three ideas worth keeping, in your own words.]",
+    title: "[On {a question that's been bothering you}]",
+    blurb: "[Two lines of the actual argument, not the topic. What do you believe now that you didn't before?]",
+    category: "Philosophy",
+    kind: "Essay",
+    tags: ["thinking"],
+    url: "#"
+  },
+  {
+    date: "May 2026",
+    title: "[What's been on repeat — {Month}]",
+    blurb: "[A few tracks or albums, and the one line each earns for being here.]",
+    category: "Music",
     kind: "Notes",
-    tags: ["reading", "leadership"],
+    tags: ["listening"],
+    url: "#"
+  },
+  {
+    date: "Apr 2026",
+    title: "[Notes on {an exhibit, a film, a show}]",
+    blurb: "[What it was, what stuck, and why it's worth the two minutes to read.]",
+    category: "Art",
+    kind: "Notes",
+    tags: ["seen"],
     url: "#"
   }
 ];
 
-const KINDS = ["All", ...new Set(ENTRIES.map(e => e.kind))];
-let activeKind = "All", query = "";
+const CATEGORIES = ["All", "Product", "Philosophy", "Music", "Art"];
+let activeCategory = "All", query = "";
 
 const listEl = document.getElementById("list");
 const emptyEl = document.getElementById("empty");
 const filtersEl = document.getElementById("filters");
 
-KINDS.forEach((k, i) => {
+CATEGORIES.forEach((c, i) => {
   const b = document.createElement("button");
   b.className = "chip" + (i === 0 ? " active" : "");
-  b.textContent = k.toUpperCase();
+  b.textContent = c.toUpperCase();
   b.onclick = () => {
-    activeKind = k;
-    [...filtersEl.children].forEach(c => c.classList.remove("active"));
+    activeCategory = c;
+    [...filtersEl.children].forEach(el => el.classList.remove("active"));
     b.classList.add("active");
     render();
   };
@@ -157,9 +185,9 @@ document.getElementById("q").addEventListener("input", e => {
 
 function render() {
   const rows = ENTRIES.filter(e => {
-    const kindOk = activeKind === "All" || e.kind === activeKind;
-    const hay = (e.title + " " + e.blurb + " " + e.tags.join(" ")).toLowerCase();
-    return kindOk && (!query || hay.includes(query));
+    const categoryOk = activeCategory === "All" || e.category === activeCategory;
+    const hay = (e.title + " " + e.blurb + " " + e.category + " " + e.kind + " " + e.tags.join(" ")).toLowerCase();
+    return categoryOk && (!query || hay.includes(query));
   });
 
   listEl.innerHTML = rows.map(e => `
@@ -167,11 +195,12 @@ function render() {
       <a class="entry" href="${e.url}">
         <span class="date">${e.date}</span>
         <div>
+          <div class="entry-type">${e.kind}</div>
           <h3>${e.title}</h3>
           <p>${e.blurb}</p>
           <div class="entry-tags">${e.tags.map(t => `<span>${t}</span>`).join("")}</div>
         </div>
-        <span class="kind">${e.kind}</span>
+        <span class="kind">${e.category}</span>
       </a>
     </li>`).join("");
 
