@@ -35,13 +35,17 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
-  /* Gradient runs the full page again, but with a dark scrim layered
-     on top (first background-image) — the color movement is still
-     visible everywhere, just consistently darkened, so text over
-     Work/About doesn't wash out the way it did with the raw gradient. */
-  background-image:linear-gradient(rgba(6,8,10,.55), rgba(6,8,10,.55)), var(--night-gradient);
+  /* The gradient only paints the first viewport height, behind the
+     hero. Below that, background-color takes over — a flat, solid
+     dark fill (matching the gradient's own darkest stop, so there's
+     no visible seam) keeps every section's text on consistent,
+     reliable contrast regardless of how tall the page gets. The
+     color movement lives in the footer instead (see .footer-gradient
+     below) — nothing with text on it sits on a moving gradient. */
+  background-color:#060708;
+  background-image:var(--night-gradient);
   background-repeat:no-repeat;
-  background-size:100% 100%;
+  background-size:100% 100vh;
   color:var(--ink);
   font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing:antialiased;
@@ -233,9 +237,7 @@ h1 em{font-style:italic; color:var(--signal); font-weight:400;}
 footer{
   position:relative; overflow:hidden;
   padding:100px 0 32px;
-  /* Solid dark — deliberately opaque so it overrides whatever part
-     of the page gradient would otherwise show through here. */
-  background:#060708;
+  background:var(--footer-gradient);
 }
 .footer-bg{
   position:absolute; left:0; right:0; top:50%; transform:translateY(-50%);
