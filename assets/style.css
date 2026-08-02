@@ -88,23 +88,23 @@ nav.wrap{display:flex; align-items:center; justify-content:space-between; height
 .navlinks.open .nav-burger span:nth-child(2){opacity:0;}
 .navlinks.open .nav-burger span:nth-child(3){transform:translateY(-3.5px) rotate(-45deg);}
 
-/* MUSIC TOGGLE */
+/* MUSIC TOGGLE — a vinyl record, glass like the rest of the nav.
+   Spins while playing; clicking it rolls the player panel out from
+   underneath (see .player below). */
 .music-btn{
-  display:flex; align-items:center; gap:7px;
-  background:none; border:1px solid rgba(255,255,255,.35); border-radius:20px;
-  padding:6px 12px; cursor:pointer;
-  font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:.04em;
-  color:#fff; opacity:.75; transition:all .18s;
+  display:flex; align-items:center; justify-content:center;
+  width:38px; height:38px; flex:none;
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.25); border-radius:50%;
+  cursor:pointer; opacity:.85; transition:opacity .18s, border-color .18s;
 }
 .music-btn:hover{border-color:#fff; opacity:1;}
-.music-btn[aria-pressed="true"]{border-color:#fff; opacity:1;}
-.bars{display:flex; align-items:flex-end; gap:2px; height:11px;}
-.bars i{width:2px; height:3px; background:currentColor; display:block;}
-.music-btn[aria-pressed="true"] .bars i{animation:eq .9s ease-in-out infinite;}
-.music-btn[aria-pressed="true"] .bars i:nth-child(2){animation-delay:.15s;}
-.music-btn[aria-pressed="true"] .bars i:nth-child(3){animation-delay:.3s;}
-@keyframes eq{0%,100%{height:3px;}50%{height:11px;}}
-@media (prefers-reduced-motion:reduce){.bars i{animation:none !important;}}
+.music-btn[aria-pressed="true"]{border-color:var(--signal); opacity:1;}
+.vinyl{display:block; transition:transform .2s;}
+.music-btn[aria-pressed="true"] .vinyl{animation:spin 3s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+@media (prefers-reduced-motion:reduce){.vinyl{animation:none !important;}}
 
 /* HERO */
 .hero{padding:100px 0 80px;}
@@ -336,20 +336,29 @@ footer h2{
 }
 
 /* ── PLAYLIST PLAYER ─────────────────────────────────── */
+/* Anchored under the vinyl button, glass like the header. Rolls out
+   downward on open instead of just fading in — transform-origin sits
+   at the top-right, right where the record button is. */
 .player{
-  position:fixed; left:24px; bottom:24px; z-index:40;
-  display:flex; align-items:center; gap:14px;
-  background:rgba(10,12,15,.85);
-  backdrop-filter:blur(10px);
-  border:1px solid var(--line); border-radius:8px;
-  padding:11px 14px; min-width:290px;
-  box-shadow:0 6px 24px rgba(0,0,0,.35);
-  animation:rise .28s ease;
+  position:absolute; top:calc(100% + 10px); right:0; z-index:40;
+  display:flex; flex-direction:column; gap:10px;
+  background:rgba(10,14,20,.55);
+  backdrop-filter:blur(18px) saturate(160%);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  border:1px solid rgba(255,255,255,.15); border-radius:12px;
+  padding:14px 16px; min-width:250px;
+  box-shadow:0 12px 32px rgba(0,0,0,.4);
+  transform-origin:top right;
+  transform:scaleY(0) translateY(-8px);
+  opacity:0; pointer-events:none;
+  transition:transform .4s cubic-bezier(.16,1,.3,1), opacity .25s ease;
 }
-@keyframes rise{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;}}
-@media (prefers-reduced-motion:reduce){.player{animation:none;}}
-.player[hidden]{display:none;}
-.pl-meta{flex:1; min-width:0;}
+.player.open{
+  transform:scaleY(1) translateY(0);
+  opacity:1; pointer-events:auto;
+}
+@media (prefers-reduced-motion:reduce){.player{transition:opacity .15s;}}
+.pl-meta{min-width:0; padding-right:18px;}
 .pl-title{
   font-size:13px; font-weight:500; color:var(--ink);
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
@@ -369,17 +378,19 @@ footer h2{
 .pl-play{font-size:10px !important; color:var(--ink) !important;}
 .pl-pos{
   font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10px;
-  color:var(--ink-soft); padding-left:10px; border-left:1px solid var(--line);
+  color:var(--ink-soft); margin-left:auto; align-self:center;
 }
 .pl-close{
+  position:absolute; top:10px; right:12px;
   background:none; border:none; cursor:pointer; color:var(--ink-soft);
-  font-size:15px; line-height:1; padding:0 0 0 4px;
+  font-size:15px; line-height:1;
 }
 .pl-close:hover{color:var(--ink);}
 @media (max-width:760px){
-  .player{left:12px; right:12px; bottom:12px; min-width:0;}
-  .music-btn .music-label{display:none;}
-  .music-btn{padding:6px 10px;}
+  .player{
+    position:fixed; top:60px; left:12px; right:12px;
+    min-width:0; transform-origin:top center;
+  }
 }
 
 /* ── SECTION RAIL ─────────────────────────────────────

@@ -15,7 +15,6 @@ const PLAYLIST = [
   const player = document.getElementById('player');
   if (!btn || !audio || !PLAYLIST.length) return;
 
-  const label   = btn.querySelector('.music-label');
   const titleEl = player.querySelector('.pl-title');
   const artEl   = player.querySelector('.pl-artist');
   const posEl   = player.querySelector('.pl-pos');
@@ -50,8 +49,7 @@ const PLAYLIST = [
     playBtn.textContent = on ? '❚❚' : '▶';
     playBtn.setAttribute('aria-label', on ? 'Pause' : 'Play');
     btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-    label.textContent = on ? 'SOUND ON' : 'SOUND OFF';
-    player.hidden = audio.paused && !player.dataset.opened;
+    player.classList.toggle('open', on || !!player.dataset.opened);
   }
 
   function load(index, autoplay) {
