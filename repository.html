@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Repository — [Your Name]</title>
 <meta name="description" content="A working library of product thinking: essays, frameworks, teardowns and notes.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -70,20 +67,14 @@
 </footer>
 
 <div class="player" id="player" hidden>
-  <div class="pl-controls">
-    <button class="pl-prev" aria-label="Previous track">◀◀</button>
-    <button class="pl-play" aria-label="Play">▶</button>
-    <button class="pl-next" aria-label="Next track">▶▶</button>
-  </div>
-  <div class="pl-meta">
-    <div class="pl-title">—</div>
-    <div class="pl-artist">—</div>
-  </div>
-  <span class="pl-pos">01/05</span>
+  <iframe class="pl-embed" title="The Outfield — The Night Game, on Spotify"
+    src="https://open.spotify.com/embed/track/3O2hDxP5BeV4bH99nRvgym?utm_source=generator&theme=0"
+    width="280" height="152" frameborder="0"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy"></iframe>
   <button class="pl-close" aria-label="Close player">&times;</button>
 </div>
 
-<audio id="ambient" preload="none"></audio>
 <script src="assets/music.js"></script>
 
 <script>
