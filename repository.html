@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repository — [Your Name]</title>
+<meta name="description" content="A working library of product thinking: essays, frameworks, teardowns and notes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="logo">[yourname].</a>
+    <div class="navlinks">
+      <a href="index.html#work">work</a>
+      <a href="repository.html" class="active">repository</a>
+      <a href="index.html#about">about</a>
+      <button class="music-btn" aria-pressed="false" aria-label="Toggle background music">
+        <span class="bars"><i></i><i></i><i></i></span>
+        <span class="music-label">SOUND OFF</span>
+      </button>
+      <a href="#" class="cta">résumé ↓</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero wrap" style="padding-bottom:24px;">
+  <div class="eyebrow">The Repository</div>
+  <h1>Everything I&rsquo;ve figured out, <em>written down</em>.</h1>
+  <p class="hero-sub">
+    A working library — essays on product philosophy, frameworks I actually use,
+    teardowns, and reading notes. Updated as I learn. Search it, filter it, steal from it.
+  </p>
+</section>
+
+<div class="wrap">
+  <div class="repo-controls">
+    <label class="search-box">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>
+      </svg>
+      <input type="search" id="q" placeholder="Search titles, topics, tags…" autocomplete="off">
+    </label>
+    <div class="filters" id="filters"></div>
+  </div>
+
+  <ul class="repo-list" id="list"></ul>
+  <div class="empty" id="empty" hidden>Nothing matches that yet. Try a broader term.</div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <h2>new entries most weeks. take what&rsquo;s useful.</h2>
+      <div class="footer-links">
+        <a href="mailto:you@example.com">email</a>
+        <a href="#">linkedin ↗</a>
+        <a href="#">rss</a>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>© 2026 [Your Name]</span>
+      <span id="stamp"></span>
+    </div>
+  </div>
+</footer>
+
+<div class="player" id="player" hidden>
+  <div class="pl-controls">
+    <button class="pl-prev" aria-label="Previous track">◀◀</button>
+    <button class="pl-play" aria-label="Play">▶</button>
+    <button class="pl-next" aria-label="Next track">▶▶</button>
+  </div>
+  <div class="pl-meta">
+    <div class="pl-title">—</div>
+    <div class="pl-artist">—</div>
+  </div>
+  <span class="pl-pos">01/05</span>
+  <button class="pl-close" aria-label="Close player">&times;</button>
+</div>
+
+<audio id="ambient" preload="none"></audio>
+<script src="assets/music.js"></script>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   ADD ENTRIES HERE. This array is the whole database.
+   kind: "Essay" | "Framework" | "Teardown" | "Notes" | "Talk"
+   url:  link to the full piece (own page, Substack, Medium, PDF…)
+   ───────────────────────────────────────────────────────────── */
+const ENTRIES = [
+  {
+    date: "Aug 2026",
+    title: "[Why most roadmaps are wish lists, not strategy]",
+    blurb: "[Two lines on the argument. Make the claim, not the topic — a reader should know what you believe before they click.]",
+    kind: "Essay",
+    tags: ["strategy", "roadmapping"],
+    url: "#"
+  },
+  {
+    date: "Jul 2026",
+    title: "[The one-question test I run before any feature ships]",
+    blurb: "[What the framework does and when to reach for it. Keep it concrete.]",
+    kind: "Framework",
+    tags: ["discovery", "prioritisation"],
+    url: "#"
+  },
+  {
+    date: "Jul 2026",
+    title: "[Teardown: how {Product} handles first-run onboarding]",
+    blurb: "[What they got right, what you'd change, and the principle you extracted.]",
+    kind: "Teardown",
+    tags: ["onboarding", "ux"],
+    url: "#"
+  },
+  {
+    date: "Jun 2026",
+    title: "[Notes on {Book / Talk}]",
+    blurb: "[The three ideas worth keeping, in your own words.]",
+    kind: "Notes",
+    tags: ["reading", "leadership"],
+    url: "#"
+  }
+];
+
+const KINDS = ["All", ...new Set(ENTRIES.map(e => e.kind))];
+let activeKind = "All", query = "";
+
+const listEl = document.getElementById("list");
+const emptyEl = document.getElementById("empty");
+const filtersEl = document.getElementById("filters");
+
+KINDS.forEach((k, i) => {
+  const b = document.createElement("button");
+  b.className = "chip" + (i === 0 ? " active" : "");
+  b.textContent = k.toUpperCase();
+  b.onclick = () => {
+    activeKind = k;
+    [...filtersEl.children].forEach(c => c.classList.remove("active"));
+    b.classList.add("active");
+    render();
+  };
+  filtersEl.appendChild(b);
+});
+
+document.getElementById("q").addEventListener("input", e => {
+  query = e.target.value.toLowerCase().trim();
+  render();
+});
+
+function render() {
+  const rows = ENTRIES.filter(e => {
+    const kindOk = activeKind === "All" || e.kind === activeKind;
+    const hay = (e.title + " " + e.blurb + " " + e.tags.join(" ")).toLowerCase();
+    return kindOk && (!query || hay.includes(query));
+  });
+
+  listEl.innerHTML = rows.map(e => `
+    <li>
+      <a class="entry" href="${e.url}">
+        <span class="date">${e.date}</span>
+        <div>
+          <h3>${e.title}</h3>
+          <p>${e.blurb}</p>
+          <div class="entry-tags">${e.tags.map(t => `<span>${t}</span>`).join("")}</div>
+        </div>
+        <span class="kind">${e.kind}</span>
+      </a>
+    </li>`).join("");
+
+  emptyEl.hidden = rows.length > 0;
+}
+
+render();
+document.getElementById("stamp").textContent =
+  ENTRIES.length + " entries · last updated " + ENTRIES[0].date.toLowerCase();
+</script>
+
+</body>
+</html>
