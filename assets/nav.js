@@ -36,6 +36,10 @@
     labels.forEach(a => a.classList.toggle('active', a.getAttribute('href') === href));
     const match = ticks.find(a => a.getAttribute('href') === href);
     if (match) currentEl.textContent = match.dataset.label;
+
+    // Nothing to navigate to while the hero itself is on screen —
+    // only show the rail once there's a reason to use it.
+    rail.classList.toggle('visible', id !== sections[0].id);
   }
 
   const observer = new IntersectionObserver(entries => {

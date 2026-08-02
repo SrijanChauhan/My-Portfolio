@@ -247,9 +247,10 @@ footer h2{font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:
      header doesn't need the scroll-adaptive contrast anyway. */
   header{
     mix-blend-mode:normal;
-    background:rgba(6,8,10,.92);
-    backdrop-filter:blur(10px);
-    border-bottom-color:var(--line);
+    background:rgba(10,14,20,.45);
+    backdrop-filter:blur(18px) saturate(160%);
+    -webkit-backdrop-filter:blur(18px) saturate(160%);
+    border-bottom-color:rgba(255,255,255,.15);
   }
   nav.wrap{height:56px;}
   .nav-group{gap:8px;}
@@ -257,8 +258,11 @@ footer h2{font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:
     position:absolute; left:0; right:0; top:56px;
     flex-direction:column; align-items:stretch; gap:0;
     max-height:0; overflow:hidden;
-    background:rgba(6,8,10,.94); backdrop-filter:blur(10px);
+    background:rgba(10,14,20,.45);
+    backdrop-filter:blur(18px) saturate(160%);
+    -webkit-backdrop-filter:blur(18px) saturate(160%);
     border-bottom:1px solid rgba(255,255,255,.15);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
     transition:max-height .25s ease;
   }
   .navlinks.open{max-height:320px;}
@@ -322,16 +326,29 @@ footer h2{font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:
    Fixed vertical navigator: current section name, a tick per
    section (active one lit up), and the other sections listed
    below it. Desktop only — folded away under .rail{display:none}
-   in the 760px breakpoint above. */
+   in the 760px breakpoint above.
+
+   Stays hidden until it's actually useful: nav.js adds .visible
+   once the visitor scrolls past the hero (nothing to navigate to
+   yet while it's on screen) and removes it again back at the top,
+   so it doesn't clutter the first thing a visitor sees. */
 .rail{
-  position:fixed; right:24px; top:50%; transform:translateY(-50%); z-index:30;
+  position:fixed; right:24px; top:50%; transform:translateY(-50%) translateX(12px); z-index:30;
   display:flex; flex-direction:column; align-items:center; gap:16px;
-  background:rgba(10,12,15,.85);
-  backdrop-filter:blur(10px);
-  border:1px solid var(--line); border-radius:16px;
+  background:rgba(14,17,22,.45);
+  backdrop-filter:blur(18px) saturate(160%);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  border:1px solid rgba(255,255,255,.14); border-radius:16px;
   padding:20px 16px;
-  box-shadow:0 6px 24px rgba(0,0,0,.35);
+  box-shadow:0 6px 24px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);
+  opacity:0; pointer-events:none;
+  transition:opacity .35s ease, transform .35s ease;
 }
+.rail.visible{
+  opacity:1; pointer-events:auto;
+  transform:translateY(-50%) translateX(0);
+}
+@media (prefers-reduced-motion:reduce){.rail{transition:opacity .01s;}}
 .rail-current{
   font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
