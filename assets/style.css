@@ -47,8 +47,9 @@ header{
   mix-blend-mode:difference;
   color:#fff;
 }
-nav.wrap{display:flex; align-items:center; justify-content:space-between; height:64px;}
+nav.wrap{display:flex; align-items:center; justify-content:space-between; height:64px; position:relative;}
 .logo{font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:20px; font-weight:600;}
+.nav-group{display:flex; align-items:center; gap:24px;}
 .navlinks{display:flex; gap:24px; align-items:center; font-size:14px; color:#fff;}
 .navlinks a{transition:opacity .15s; opacity:.75;}
 .navlinks a:hover, .navlinks a.active{opacity:1;}
@@ -57,6 +58,20 @@ nav.wrap{display:flex; align-items:center; justify-content:space-between; height
   padding:6px 14px; border-radius:20px; font-size:13px;
 }
 .navlinks .cta:hover{background:#fff; color:#000;}
+
+/* HAMBURGER (mobile only) */
+.nav-burger{
+  display:none; background:none; border:1px solid rgba(255,255,255,.35);
+  border-radius:50%; width:34px; height:34px; flex:none; cursor:pointer;
+  align-items:center; justify-content:center;
+}
+.nav-burger span{
+  display:block; width:14px; height:1.5px; background:#fff;
+  margin:2px 0; transition:transform .2s, opacity .2s;
+}
+.navlinks.open .nav-burger span:nth-child(1){transform:translateY(3.5px) rotate(45deg);}
+.navlinks.open .nav-burger span:nth-child(2){opacity:0;}
+.navlinks.open .nav-burger span:nth-child(3){transform:translateY(-3.5px) rotate(-45deg);}
 
 /* MUSIC TOGGLE */
 .music-btn{
@@ -218,7 +233,42 @@ footer h2{font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:
   .about-grid{grid-template-columns:1fr;}
   .entry{grid-template-columns:1fr; gap:8px;}
   .entry .kind{justify-self:start;}
-  .navlinks{gap:14px; font-size:13px;}
+  h1{max-width:100%;}
+}
+
+/* NAV — mobile collapse. Links + résumé CTA fold into a dropdown
+   under the header; the sound toggle and hamburger are siblings of
+   #navlinks (not children), so they stay in the top row, unaffected
+   by #navlinks collapsing into an absolutely-positioned panel. */
+@media (max-width:680px){
+  /* Drop the blend-mode trick here: it would also invert the
+     dropdown panel's own solid background, since the whole header
+     subtree composites as one unit before blending. A compact fixed
+     header doesn't need the scroll-adaptive contrast anyway. */
+  header{
+    mix-blend-mode:normal;
+    background:rgba(6,8,10,.92);
+    backdrop-filter:blur(10px);
+    border-bottom-color:var(--line);
+  }
+  nav.wrap{height:56px;}
+  .nav-group{gap:8px;}
+  .navlinks{
+    position:absolute; left:0; right:0; top:56px;
+    flex-direction:column; align-items:stretch; gap:0;
+    max-height:0; overflow:hidden;
+    background:rgba(6,8,10,.94); backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,.15);
+    transition:max-height .25s ease;
+  }
+  .navlinks.open{max-height:320px;}
+  .navlinks a{padding:16px 20px; border-top:1px solid rgba(255,255,255,.1); opacity:1;}
+  .navlinks .cta{
+    border:none; border-radius:0; padding:16px 20px;
+    border-top:1px solid rgba(255,255,255,.1);
+  }
+  .navlinks .cta:hover{background:none; color:#fff;}
+  .nav-burger{display:flex;}
 }
 
 /* ── PLAYLIST PLAYER ─────────────────────────────────── */
@@ -266,4 +316,58 @@ footer h2{font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:
   .player{left:12px; right:12px; bottom:12px; min-width:0;}
   .music-btn .music-label{display:none;}
   .music-btn{padding:6px 10px;}
+}
+
+/* ── SECTION RAIL ─────────────────────────────────────
+   Fixed vertical navigator: current section name, a tick per
+   section (active one lit up), and the other sections listed
+   below it. Desktop only — folded away under .rail{display:none}
+   in the 760px breakpoint above. */
+.rail{
+  position:fixed; right:24px; top:50%; transform:translateY(-50%); z-index:30;
+  display:flex; flex-direction:column; align-items:center; gap:16px;
+  background:rgba(10,12,15,.85);
+  backdrop-filter:blur(10px);
+  border:1px solid var(--line); border-radius:16px;
+  padding:20px 16px;
+  box-shadow:0 6px 24px rgba(0,0,0,.35);
+}
+.rail-current{
+  font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+  color:#fff;
+}
+.rail-ticks{
+  list-style:none; display:flex; flex-direction:column; align-items:center; gap:10px;
+  position:relative; padding:4px 0;
+}
+.rail-ticks::before{
+  content:""; position:absolute; left:50%; top:0; bottom:0; width:1px;
+  background:var(--line); transform:translateX(-50%); z-index:0;
+}
+.rail-ticks a{
+  position:relative; z-index:1; display:block;
+  width:7px; height:7px; border-radius:50%;
+  background:rgba(255,255,255,.25);
+  transition:background .2s, box-shadow .2s, width .2s, height .2s;
+}
+.rail-ticks a:hover{background:rgba(255,255,255,.6);}
+.rail-ticks a.active{
+  background:var(--signal); width:9px; height:9px;
+  box-shadow:0 0 0 4px var(--signal-soft);
+}
+.rail-labels{
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  border-top:1px solid var(--line); padding-top:14px;
+}
+.rail-labels a{
+  font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size:10px; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--ink-soft); transition:color .15s;
+}
+.rail-labels a:hover{color:#fff;}
+.rail-labels a.active{color:#fff; font-weight:600;}
+
+@media (max-width:900px){
+  .rail{display:none;}
 }

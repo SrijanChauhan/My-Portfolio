@@ -12,15 +12,20 @@
 <header>
   <nav class="wrap">
     <a href="index.html" class="logo">[yourname].</a>
-    <div class="navlinks">
-      <a href="index.html#work">work</a>
-      <a href="repository.html" class="active">repository</a>
-      <a href="index.html#about">about</a>
+    <div class="nav-group">
+      <div class="navlinks" id="navlinks">
+        <a href="index.html#work">work</a>
+        <a href="repository.html" class="active">repository</a>
+        <a href="index.html#about">about</a>
+        <a href="#" class="cta">résumé ↓</a>
+      </div>
       <button class="music-btn" aria-pressed="false" aria-label="Toggle background music">
         <span class="bars"><i></i><i></i><i></i></span>
         <span class="music-label">SOUND OFF</span>
       </button>
-      <a href="#" class="cta">résumé ↓</a>
+      <button class="nav-burger" aria-expanded="false" aria-controls="navlinks" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 </header>
@@ -82,6 +87,7 @@
 
 <audio id="ambient" preload="none"></audio>
 <script src="assets/music.js"></script>
+<script src="assets/nav.js"></script>
 
 <script>
 /* ─────────────────────────────────────────────────────────────

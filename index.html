@@ -12,20 +12,25 @@
 <header>
   <nav class="wrap">
     <a href="index.html" class="logo">[yourname].</a>
-    <div class="navlinks">
-      <a href="#work">work</a>
-      <a href="repository.html">repository</a>
-      <a href="#about">about</a>
+    <div class="nav-group">
+      <div class="navlinks" id="navlinks">
+        <a href="#work">work</a>
+        <a href="repository.html">repository</a>
+        <a href="#about">about</a>
+        <a href="#" class="cta">résumé ↓</a>
+      </div>
       <button class="music-btn" aria-pressed="false" aria-label="Toggle background music">
         <span class="bars"><i></i><i></i><i></i></span>
         <span class="music-label">SOUND OFF</span>
       </button>
-      <a href="#" class="cta">résumé ↓</a>
+      <button class="nav-burger" aria-expanded="false" aria-controls="navlinks" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 </header>
 
-<section class="hero wrap">
+<section class="hero wrap" id="top">
   <div class="eyebrow">Product Manager · [City / Region]</div>
   <h1>I turn messy problems into <em>shipped</em> product decisions.</h1>
   <p class="hero-sub">
@@ -136,7 +141,7 @@
   </div>
 </section>
 
-<footer>
+<footer id="contact">
   <div class="wrap">
     <div class="row">
       <h2>let&rsquo;s talk about what you&rsquo;re building.</h2>
@@ -167,8 +172,25 @@
   <button class="pl-close" aria-label="Close player">&times;</button>
 </div>
 
+<nav class="rail" aria-label="Section navigator">
+  <div class="rail-current">Hero</div>
+  <ol class="rail-ticks">
+    <li><a href="#top" data-label="Hero" class="active" aria-label="Jump to Hero"></a></li>
+    <li><a href="#work" data-label="Work" aria-label="Jump to Work"></a></li>
+    <li><a href="#about" data-label="About" aria-label="Jump to About"></a></li>
+    <li><a href="#contact" data-label="Contact" aria-label="Jump to Contact"></a></li>
+  </ol>
+  <div class="rail-labels">
+    <a href="#top" data-label="Hero" class="active">Hero</a>
+    <a href="#work" data-label="Work">Work</a>
+    <a href="#about" data-label="About">About</a>
+    <a href="#contact" data-label="Contact">Contact</a>
+  </div>
+</nav>
+
 <audio id="ambient" preload="none"></audio>
 <script src="assets/music.js"></script>
+<script src="assets/nav.js"></script>
 
 </body>
 </html>
