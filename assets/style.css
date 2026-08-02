@@ -18,15 +18,34 @@
     #1c1f24 70%,
     #060708 100%
   );
+  /* Same gradient, reversed (dark at the top edge, blue at the
+     bottom) so it seams cleanly into the flat dark body above it. */
+  --footer-gradient: linear-gradient(
+    0deg,
+    #16324a 0%,
+    #24507a 16%,
+    #3f6f8c 30%,
+    #6c8791 42%,
+    #7c8a8a 50%,
+    #4b4f52 58%,
+    #1c1f24 70%,
+    #060708 100%
+  );
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
-  /* scrolls with the page (not fixed) so the gradient's tone actually
-     changes underneath the sticky header as the visitor scrolls down */
-  background:var(--night-gradient);
+  /* The gradient only paints the first viewport height, behind the
+     hero. Below that, background-color takes over — a flat, solid
+     dark fill (matching the gradient's own darkest stop, so there's
+     no visible seam) keeps every section's text on consistent,
+     reliable contrast regardless of how tall the page gets. The
+     color movement lives in the footer instead (see .footer-gradient
+     below) — nothing with text on it sits on a moving gradient. */
+  background-color:#060708;
+  background-image:var(--night-gradient);
   background-repeat:no-repeat;
-  background-size:100% 100%;
+  background-size:100% 100vh;
   color:var(--ink);
   font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing:antialiased;
@@ -218,6 +237,7 @@ h1 em{font-style:italic; color:var(--signal); font-weight:400;}
 footer{
   position:relative; overflow:hidden;
   padding:100px 0 32px;
+  background:var(--footer-gradient);
 }
 .footer-bg{
   position:absolute; left:0; right:0; top:50%; transform:translateY(-50%);
