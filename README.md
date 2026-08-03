@@ -1,7 +1,7 @@
 # Portfolio
 
-A static product-management portfolio site: a home page with case studies and a searchable
-"repository" of writing, built with plain HTML/CSS/JS — no framework, no build step.
+Srijan Chauhan's static product-management portfolio site: a home page with case studies and
+a searchable "repository" of writing, built with plain HTML/CSS/JS — no framework, no build step.
 
 ## Structure
 
@@ -10,6 +10,8 @@ index.html          Home page — hero, case studies, about, footer
 repository.html      Filterable/searchable list of essays, frameworks, teardowns, notes
 assets/style.css     All styling
 assets/music.js      Optional ambient background-music player
+assets/resume.pdf    Downloadable résumé (linked from the hero and footer)
+assets/nav.js        Nav/menu behavior
 ```
 
 ## Running locally
@@ -24,17 +26,18 @@ Then visit `http://localhost:8000/index.html`.
 
 ## Customizing
 
-All placeholder copy is wrapped in `[brackets]` — search for `[` across `index.html`,
-`repository.html`, and the `ENTRIES` array in `repository.html` to find every spot that
-needs real content (name, bio, case studies, metrics, links, résumé, email).
+Name, résumé, and contact links (LinkedIn, GitHub, email, phone) are already filled in.
+Remaining placeholder copy is wrapped in `[brackets]` — search for `[` across `index.html`
+and `repository.html` to find spots that still need real content (case study details,
+metrics, about-section bio, and the `ENTRIES` array entries).
 
 To add repository entries, edit the `ENTRIES` array at the bottom of `repository.html`.
 
 ## Background music player
 
-`assets/music.js` drives the "SOUND ON/OFF" toggle and the bottom-left player widget.
-It streams from direct URLs — nothing is hosted in this repo. Edit the `PLAYLIST` array
-at the top of the file:
+`assets/music.js` drives a vinyl-record icon in the nav (spins while playing) that rolls
+out a track panel anchored to the button. It streams from direct URLs — nothing is hosted
+in this repo. Edit the `PLAYLIST` array at the top of the file:
 
 ```js
 const PLAYLIST = [
