@@ -6,37 +6,22 @@
   --signal:#6C93FF;
   --signal-soft:rgba(108,147,255,.14);
 
-  /* The Outfield / The Night Game — album art gradient.
-     Stays in the deep-blue range the whole way down (no fade to the
-     lighter hazy tones that washed out text before) — the "sky" only
-     brightens again right at the seam into Contact, handled by
-     --footer-gradient below, not here. */
+  /* The Outfield / The Night Game — album art gradient. Original
+     first-iteration blue tones, held in the blue range the whole way
+     down the page — including Contact, so there's no seam/page-break
+     into a different tone. The tree silhouette in the footer (see
+     .footer-trees) reads against this blue instead of a black band. */
   --night-gradient: linear-gradient(
     180deg,
     #16324a 0%,
-    #1b3d59 50%,
-    #24507a 100%
-  );
-  /* Lives at the very top of the footer: a brief bright flash right
-     at the About→Contact seam, diving straight to black within the
-     first fifth of the footer's height — so the glow is a moment,
-     and everything below it (all the actual Contact content) sits on
-     solid dark for stars/text contrast. */
-  --footer-gradient: linear-gradient(
-    180deg,
-    #7c8a8a 0%,
-    #4b4f52 8%,
-    #1c1f24 16%,
-    #060708 28%,
-    #000000 100%
+    #24507a 50%,
+    #3f6f8c 100%
   );
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
-  /* Blue gradient runs the full page. Contact gets its own gradient
-     (see footer{} below) that flashes bright at the seam then goes
-     solid black, rather than picking up this gradient's tail. */
+  /* Blue gradient runs the full page, uninterrupted through Contact. */
   background-image:var(--night-gradient);
   background-repeat:no-repeat;
   background-size:100% 100%;
@@ -151,7 +136,35 @@ h1 em{font-style:italic; color:var(--signal); font-weight:400;}
   font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:12px; color:var(--ink-soft);
   overflow:hidden;
 }
-.project-media img{width:100%; height:100%; object-fit:cover; display:block;}
+.project-media img{width:100%; height:100%; object-fit:contain; display:block;}
+.project-media-stack{
+  position:relative;
+  background:linear-gradient(160deg, #1d4566, #16324a);
+  overflow:visible;
+}
+.project-media-stack img{
+  position:absolute; width:46%; height:auto; max-height:84%;
+  object-fit:contain; border-radius:14px;
+  box-shadow:0 20px 40px rgba(0,0,0,.45);
+  transition:transform .25s ease;
+}
+.project-media-stack img:nth-child(1){transform:rotate(-8deg) translate(-24%, 2%); z-index:1;}
+.project-media-stack img:nth-child(2){transform:rotate(3deg) translate(0%, -4%); z-index:2;}
+.project-media-stack img:nth-child(3){transform:rotate(11deg) translate(24%, 4%); z-index:1;}
+.project-media-stack:hover img:nth-child(1){transform:rotate(-11deg) translate(-27%, 0%);}
+.project-media-stack:hover img:nth-child(3){transform:rotate(14deg) translate(27%, 2%);}
+.project-media svg{width:100%; height:100%; display:block;}
+.chart-title{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:.06em; fill:var(--ink-soft);}
+.chart-axis{stroke:var(--line); stroke-width:1;}
+.chart-line{fill:none; stroke:var(--signal); stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
+.chart-dot{fill:var(--signal); stroke:#14171C; stroke-width:2;}
+.chart-dot-end{r:6; fill:var(--ink);}
+.chart-value{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:13px; font-weight:500; fill:var(--ink-soft);}
+.chart-value-end{fill:var(--ink); font-weight:600;}
+.chart-tick{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; fill:var(--ink-soft);}
+.chart-annotation{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:12px; fill:var(--ink-soft);}
+.chart-bar-base{fill:var(--signal-soft);}
+.chart-bar-hi{fill:var(--signal);}
 .meta-row{
   display:flex; gap:10px; flex-wrap:wrap; align-items:center;
   font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:12px; color:var(--ink-soft); margin-bottom:14px;
@@ -172,7 +185,7 @@ h1 em{font-style:italic; color:var(--signal); font-weight:400;}
 .impact .label{font-size:12px; color:var(--ink-soft);}
 
 /* ABOUT */
-.about{padding:80px 0; border-bottom:1px solid var(--line);}
+.about{padding:80px 0;}
 .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
 .about h2{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:26px; font-weight:500; margin-bottom:16px;}
 .about p{font-size:15px; line-height:1.7; color:var(--ink-soft);}
@@ -227,11 +240,18 @@ h1 em{font-style:italic; color:var(--signal); font-weight:400;}
 .entry-tags span::before{content:"#";}
 .empty{padding:60px 0; text-align:center; color:var(--ink-soft); font-size:15px;}
 
-/* FOOTER */
+/* FOOTER — no background of its own; the body's blue gradient
+   (--night-gradient) runs straight through from the hero, so there's
+   no seam at the About→Contact boundary. */
 footer{
   position:relative; overflow:hidden;
   padding:100px 0 32px;
-  background:var(--footer-gradient);
+}
+.footer-trees{
+  position:absolute; left:0; right:0; bottom:0; width:100%;
+  height:clamp(110px, 16vw, 210px);
+  z-index:0; pointer-events:none;
+  fill:#0a1712; opacity:.9;
 }
 .footer-dots{position:absolute; inset:0; pointer-events:none; z-index:0;}
 .footer-dots i{

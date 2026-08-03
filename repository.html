@@ -80,7 +80,7 @@
     <div class="row">
       <h2>New Entries Most Weeks. Take What&rsquo;s Useful.</h2>
       <div class="footer-links">
-        <a href="mailto:you@example.com">Email</a>
+        <a href="mailto:srijan.pgp18151@iimkashipur.ac.in">Email</a>
         <a href="https://www.linkedin.com/in/srijanchauhan/" target="_blank" rel="noopener">LinkedIn ↗</a>
         <a href="https://github.com/SrijanChauhan" target="_blank" rel="noopener">GitHub ↗</a>
         <a href="tel:+919148529555">+91 9148529555</a>
@@ -109,15 +109,6 @@
    ───────────────────────────────────────────────────────────── */
 const ENTRIES = [
   {
-    date: "Aug 2026",
-    title: "[Why most roadmaps are wish lists, not strategy]",
-    blurb: "[Two lines on the argument. Make the claim, not the topic — a reader should know what you believe before they click.]",
-    category: "Product",
-    kind: "Essay",
-    tags: ["strategy", "roadmapping"],
-    url: "#"
-  },
-  {
     date: "Jul 2026",
     title: "[The one-question test I run before any feature ships]",
     blurb: "[What the framework does and when to reach for it. Keep it concrete.]",
@@ -133,15 +124,6 @@ const ENTRIES = [
     category: "Product",
     kind: "Teardown",
     tags: ["onboarding", "ux"],
-    url: "#"
-  },
-  {
-    date: "Jun 2026",
-    title: "[On {a question that's been bothering you}]",
-    blurb: "[Two lines of the actual argument, not the topic. What do you believe now that you didn't before?]",
-    category: "Philosophy",
-    kind: "Essay",
-    tags: ["thinking"],
     url: "#"
   },
   {
@@ -161,6 +143,33 @@ const ENTRIES = [
     kind: "Notes",
     tags: ["seen"],
     url: "#"
+  },
+  {
+    date: "Jun 2022",
+    title: "Virtual Account Management: The Key to Next-Gen Transaction Banking",
+    blurb: "Virtual Account Management lets a bank split one physical account into many sub-ledgers — cutting admin overhead while keeping full reporting visibility for corporate treasury.",
+    category: "Product",
+    kind: "Essay",
+    tags: ["fintech", "banking"],
+    url: "https://www.linkedin.com/pulse/virtual-account-management-key-next-generation-banking-srijan-chauhan/"
+  },
+  {
+    date: "Apr 2020",
+    title: "Empathy in the Age of Artificial Intelligence",
+    blurb: "As AI takes over data-crunching, the skills that keep people relevant are the ones machines can't fake — empathy, adaptability, leadership. The future is AI and humans splitting the work by what each is actually good at.",
+    category: "Philosophy",
+    kind: "Essay",
+    tags: ["ai", "future of work"],
+    url: "https://www.linkedin.com/pulse/empathy-age-artificial-intelligence-srijan-chauhan/"
+  },
+  {
+    date: "Sep 2019",
+    title: "The Emerging Impertinence of Market Surveys",
+    blurb: "Most purchasing decisions are made unconsciously, in the emotional brain — which is why self-reported surveys keep missing the mark. Neuromarketing, reading the brain directly, gets closer to the truth.",
+    category: "Product",
+    kind: "Essay",
+    tags: ["research", "consumer behaviour"],
+    url: "https://www.linkedin.com/pulse/emerging-impertinence-market-surveys-srijan-chauhan/"
   }
 ];
 
@@ -198,7 +207,7 @@ function render() {
 
   listEl.innerHTML = rows.map(e => `
     <li>
-      <a class="entry" href="${e.url}">
+      <a class="entry" href="${e.url}"${e.url.startsWith("http") ? ' target="_blank" rel="noopener"' : ""}>
         <span class="date">${e.date}</span>
         <div>
           <div class="entry-type">${e.kind}</div>
