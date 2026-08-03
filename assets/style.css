@@ -28,6 +28,61 @@ body{
   color:var(--ink);
   font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+/* Starfield — a fixed, tiled layer of stars behind all content, so the
+   whole page reads as a night sky, not just the Contact footer. */
+body::before{
+  content:"";
+  position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background-image:
+    radial-gradient(1.1px 1.1px at 63.4% 4.4%, rgba(255,255,255,0.47), transparent 100%),
+    radial-gradient(1.7px 1.7px at 72.7% 67.0%, rgba(255,255,255,0.4), transparent 100%),
+    radial-gradient(1.0px 1.0px at 42.5% 4.9%, rgba(255,255,255,0.63), transparent 100%),
+    radial-gradient(1.4px 1.4px at 4.5% 21.1%, rgba(255,255,255,0.65), transparent 100%),
+    radial-gradient(1.6px 1.6px at 23.2% 58.6%, rgba(255,255,255,0.35), transparent 100%),
+    radial-gradient(1.1px 1.1px at 79.4% 69.0%, rgba(255,255,255,0.44), transparent 100%),
+    radial-gradient(0.9px 0.9px at 93.9% 34.3%, rgba(255,255,255,0.4), transparent 100%),
+    radial-gradient(1.6px 1.6px at 83.4% 60.0%, rgba(255,255,255,0.75), transparent 100%),
+    radial-gradient(1.2px 1.2px at 53.5% 95.4%, rgba(255,255,255,0.65), transparent 100%),
+    radial-gradient(1.7px 1.7px at 81.6% 61.4%, rgba(255,255,255,0.67), transparent 100%),
+    radial-gradient(1.0px 1.0px at 69.6% 6.4%, rgba(255,255,255,0.51), transparent 100%),
+    radial-gradient(0.9px 0.9px at 9.7% 24.3%, rgba(255,255,255,0.5), transparent 100%),
+    radial-gradient(1.2px 1.2px at 63.0% 37.0%, rgba(255,255,255,0.47), transparent 100%),
+    radial-gradient(1.4px 1.4px at 27.6% 91.9%, rgba(255,255,255,0.69), transparent 100%),
+    radial-gradient(1.0px 1.0px at 18.4% 72.0%, rgba(255,255,255,0.56), transparent 100%),
+    radial-gradient(1.4px 1.4px at 97.0% 63.4%, rgba(255,255,255,0.73), transparent 100%),
+    radial-gradient(1.0px 1.0px at 82.9% 76.5%, rgba(255,255,255,0.37), transparent 100%),
+    radial-gradient(1.0px 1.0px at 32.3% 27.7%, rgba(255,255,255,0.87), transparent 100%),
+    radial-gradient(1.5px 1.5px at 86.1% 32.2%, rgba(255,255,255,0.57), transparent 100%),
+    radial-gradient(1.1px 1.1px at 89.8% 46.0%, rgba(255,255,255,0.49), transparent 100%),
+    radial-gradient(1.4px 1.4px at 55.9% 27.2%, rgba(255,255,255,0.84), transparent 100%),
+    radial-gradient(1.8px 1.8px at 40.3% 23.1%, rgba(255,255,255,0.63), transparent 100%),
+    radial-gradient(0.9px 0.9px at 10.7% 6.5%, rgba(255,255,255,0.7), transparent 100%),
+    radial-gradient(0.9px 0.9px at 78.0% 42.5%, rgba(255,255,255,0.56), transparent 100%),
+    radial-gradient(1.8px 1.8px at 97.6% 52.8%, rgba(255,255,255,0.82), transparent 100%),
+    radial-gradient(1.5px 1.5px at 3.1% 71.2%, rgba(255,255,255,0.65), transparent 100%),
+    radial-gradient(0.9px 0.9px at 27.6% 63.5%, rgba(255,255,255,0.59), transparent 100%),
+    radial-gradient(1.7px 1.7px at 45.6% 93.6%, rgba(255,255,255,0.49), transparent 100%),
+    radial-gradient(1.7px 1.7px at 50.1% 19.2%, rgba(255,255,255,0.83), transparent 100%),
+    radial-gradient(1.4px 1.4px at 30.7% 63.3%, rgba(255,255,255,0.43), transparent 100%),
+    radial-gradient(1.6px 1.6px at 75.2% 53.8%, rgba(255,255,255,0.64), transparent 100%),
+    radial-gradient(0.8px 0.8px at 2.1% 33.1%, rgba(255,255,255,0.86), transparent 100%),
+    radial-gradient(1.1px 1.1px at 86.4% 81.8%, rgba(255,255,255,0.38), transparent 100%),
+    radial-gradient(0.9px 0.9px at 86.3% 92.9%, rgba(255,255,255,0.62), transparent 100%),
+    radial-gradient(1.6px 1.6px at 8.6% 75.0%, rgba(255,255,255,0.42), transparent 100%),
+    radial-gradient(1.1px 1.1px at 47.6% 54.8%, rgba(255,255,255,0.83), transparent 100%),
+    radial-gradient(1.3px 1.3px at 42.6% 22.3%, rgba(255,255,255,0.75), transparent 100%),
+    radial-gradient(1.8px 1.8px at 21.3% 31.9%, rgba(255,255,255,0.71), transparent 100%),
+    radial-gradient(0.9px 0.9px at 44.1% 51.7%, rgba(255,255,255,0.47), transparent 100%),
+    radial-gradient(1.0px 1.0px at 34.5% 58.5%, rgba(255,255,255,0.47), transparent 100%),
+    radial-gradient(1.0px 1.0px at 8.8% 62.6%, rgba(255,255,255,0.85), transparent 100%),
+    radial-gradient(1.0px 1.0px at 84.5% 8.8%, rgba(255,255,255,0.72), transparent 100%),
+    radial-gradient(1.7px 1.7px at 22.6% 14.7%, rgba(255,255,255,0.66), transparent 100%),
+    radial-gradient(1.6px 1.6px at 47.4% 77.3%, rgba(255,255,255,0.45), transparent 100%),
+    radial-gradient(1.2px 1.2px at 11.3% 43.4%, rgba(255,255,255,0.61), transparent 100%);
+  background-repeat:repeat;
+  background-size:680px 900px;
 }
 ::selection{background:var(--signal); color:#fff;}
 a{color:inherit; text-decoration:none;}
@@ -99,7 +154,7 @@ nav.wrap{display:flex; align-items:center; justify-content:space-between; height
   color:var(--signal); margin-bottom:20px;
   display:flex; align-items:center; gap:10px;
 }
-.eyebrow::before{content:""; width:20px; height:1px; background:var(--signal);}
+.eyebrow::before{content:""; width:20px; height:1px; background:var(--signal); flex-shrink:0;}
 h1{
   font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight:500;
   font-size:clamp(36px, 6vw, 66px); line-height:1.05;
@@ -140,19 +195,18 @@ h1 em{font-style:italic; color:var(--signal); font-weight:400;}
 .project-media-stack{
   position:relative;
   background:linear-gradient(160deg, #1d4566, #16324a);
-  overflow:visible;
 }
 .project-media-stack img{
-  position:absolute; width:46%; height:auto; max-height:84%;
-  object-fit:contain; border-radius:14px;
-  box-shadow:0 20px 40px rgba(0,0,0,.45);
+  position:absolute; top:50%; left:50%; width:40%; height:auto; max-height:78%;
+  object-fit:contain; border-radius:10px;
+  box-shadow:0 14px 28px rgba(0,0,0,.4);
   transition:transform .25s ease;
 }
-.project-media-stack img:nth-child(1){transform:rotate(-8deg) translate(-24%, 2%); z-index:1;}
-.project-media-stack img:nth-child(2){transform:rotate(3deg) translate(0%, -4%); z-index:2;}
-.project-media-stack img:nth-child(3){transform:rotate(11deg) translate(24%, 4%); z-index:1;}
-.project-media-stack:hover img:nth-child(1){transform:rotate(-11deg) translate(-27%, 0%);}
-.project-media-stack:hover img:nth-child(3){transform:rotate(14deg) translate(27%, 2%);}
+.project-media-stack img:nth-child(1){transform:translate(-84%, -50%) rotate(-8deg); z-index:1;}
+.project-media-stack img:nth-child(2){transform:translate(-50%, -54%) rotate(3deg); z-index:2;}
+.project-media-stack img:nth-child(3){transform:translate(-16%, -50%) rotate(11deg); z-index:1;}
+.project-media-stack:hover img:nth-child(1){transform:translate(-90%, -50%) rotate(-11deg);}
+.project-media-stack:hover img:nth-child(3){transform:translate(-10%, -50%) rotate(14deg);}
 .project-media svg{width:100%; height:100%; display:block;}
 .chart-title{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:.06em; fill:var(--ink-soft);}
 .chart-axis{stroke:var(--line); stroke-width:1;}
@@ -165,6 +219,29 @@ h1 em{font-style:italic; color:var(--signal); font-weight:400;}
 .chart-annotation{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:12px; fill:var(--ink-soft);}
 .chart-bar-base{fill:var(--signal-soft);}
 .chart-bar-hi{fill:var(--signal);}
+
+/* Brand-voiced project graphics — Cadence and Grameen Pay's own palettes,
+   not the portfolio's blue, since these represent their product identity. */
+.project-media-brand{background:none; padding:0;}
+.project-media-brand svg{width:100%; height:100%; display:block;}
+
+.cd-title{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:19px; font-weight:700; letter-spacing:.08em; fill:#D6FF3F;}
+.cd-subtitle{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:.12em; fill:rgba(255,255,255,.5);}
+.cd-arc-track{fill:none; stroke:#242a1a; stroke-width:6; stroke-linecap:round;}
+.cd-arc-fill{fill:none; stroke:#D6FF3F; stroke-width:6; stroke-linecap:round;}
+.cd-arc-dot{fill:#F2FFB0; stroke:#0b0d0a; stroke-width:3;}
+.cd-value{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:26px; font-weight:700; fill:#fff;}
+.cd-value-label{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:.08em; fill:rgba(255,255,255,.55);}
+.cd-bar{fill:#D6FF3F;}
+
+.gp-title{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:17px; font-weight:700; letter-spacing:.04em; fill:#fff;}
+.gp-subtitle{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10px; letter-spacing:.14em; fill:rgba(255,255,255,.7);}
+.gp-link{stroke:rgba(255,255,255,.35); stroke-width:1.5;}
+.gp-node{fill:#fff; opacity:.9;}
+.gp-hub{fill:#fff;}
+.gp-hub-label{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:9px; letter-spacing:.06em; fill:#8f2a22; font-weight:700;}
+.gp-stat{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:25px; font-weight:700; fill:#fff;}
+.gp-stat-label{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10px; letter-spacing:.03em; fill:rgba(255,255,255,.85);}
 .meta-row{
   display:flex; gap:10px; flex-wrap:wrap; align-items:center;
   font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:12px; color:var(--ink-soft); margin-bottom:14px;

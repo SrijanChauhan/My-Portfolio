@@ -12,6 +12,7 @@ assets/style.css     All styling
 assets/music.js      Optional ambient background-music player
 assets/resume.pdf    Downloadable résumé (linked from the hero and footer)
 assets/nav.js        Nav/menu behavior
+CHANGELOG.md         Dated release notes for this site
 ```
 
 ## Running locally
@@ -26,12 +27,21 @@ Then visit `http://localhost:8000/index.html`.
 
 ## Customizing
 
-Name, résumé, and contact links (LinkedIn, GitHub, email, phone) are already filled in.
-Remaining placeholder copy is wrapped in `[brackets]` — search for `[` across `index.html`
-and `repository.html` to find spots that still need real content (case study details,
-metrics, about-section bio, and the `ENTRIES` array entries).
+Name, résumé, contact links, the hero stats, and all four Work case studies (DroomPay,
+M2P, Grameen Pay, Cadence) are already filled in with real content. Remaining placeholder
+copy is wrapped in `[brackets]` — search for `[` across `index.html` and `repository.html`
+to find what's left (the about-section bio, one skills row, and a few Repository entries).
 
 To add repository entries, edit the `ENTRIES` array at the bottom of `repository.html`.
+
+### Work section graphics
+
+Each case study's `.project-media` is an inline SVG, not a screenshot — for DroomPay/M2P
+(internal, confidential tools) it's an abstract data chart in the site's blue; for Cadence
+and Grameen Pay it's an original graphic voiced in *their own* brand colors (Cadence's
+volt-green-on-black, Grameen Pay's FSS red) rather than the portfolio's palette. Edit the
+SVG markup directly in `index.html` per project, and its matching classes (`.chart-*`,
+`.cd-*`, `.gp-*`) in `assets/style.css`.
 
 ## Background music player
 
@@ -51,8 +61,13 @@ position across page navigation via `sessionStorage`.
 
 ## Theme
 
-The dark palette and gradient in `assets/style.css` are lifted from *The Outfield* by
-The Night Game — CSS-only, no image asset. The site font is Alex Brush (Google Fonts),
-matching the handwritten style on that cover. The nav bar has no fixed background;
-it uses `mix-blend-mode: difference` so its text stays legible against whatever part
-of the gradient is scrolled behind it.
+The dark blue palette and gradient in `assets/style.css` are lifted from *The Outfield* by
+The Night Game — CSS-only, no image asset. It now runs the full page uninterrupted,
+including through Contact — no seam between About and Contact. The site font is Switzer
+(Fontshare). The nav bar is a translucent glass panel (`backdrop-filter: blur`), fixed
+white text, consistent with the mobile menu, section rail, and music player.
+
+A starfield (`body::before`, a tiled set of radial-gradient dots) runs behind the whole
+page, fixed so it doesn't scroll away. The Contact footer has a jagged pine-forest
+silhouette (`.footer-trees`, hand-traced as an SVG path) sitting at the bottom, with the
+starfield showing through above and around it.
