@@ -168,10 +168,16 @@ h1{
 }
 h1 em{font-style:italic; color:var(--signal); font-weight:400;}
 .hero-sub{margin-top:24px; max-width:560px; font-size:17px; line-height:1.6; color:var(--ink-soft);}
-.hero-stats{display:flex; margin-top:56px; border-top:1px solid var(--line);}
-.stat{flex:1; padding:22px 0 0; border-right:1px solid var(--line);}
-.stat:last-child{border-right:none;}
-.stat .num{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:30px; font-weight:500; color:var(--signal);}
+.hero-stats{display:flex; gap:14px; margin-top:56px;}
+.stat{
+  flex:1; padding:20px 18px;
+  background:rgba(220,38,38,.1);
+  border:1px solid rgba(220,38,38,.45);
+  border-radius:12px;
+  transition:background .15s, border-color .15s;
+}
+.stat:hover{background:rgba(220,38,38,.16); border-color:rgba(220,38,38,.7);}
+.stat .num{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:30px; font-weight:500; color:#f04747;}
 .stat .label{font-size:12px; color:var(--ink-soft); margin-top:6px; font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;}
 
 /* SECTION HEAD */
@@ -394,7 +400,6 @@ footer h2{
   .project-media{order:0;}
   .project{grid-template-columns:32px 1fr; gap:16px;}
   .hero-stats{flex-direction:column;}
-  .stat{border-right:none; border-bottom:1px solid var(--line); padding-bottom:16px; margin-bottom:16px;}
   .about-grid{grid-template-columns:1fr;}
   .entry{grid-template-columns:1fr; gap:8px;}
   .entry .kind{justify-self:start;}

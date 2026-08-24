@@ -2,6 +2,18 @@
 
 Dated release notes for this site. Newest first.
 
+## 2026-08-24
+
+**Nav**
+- Added an original, procedurally-shaded mirror ball icon before the "Srijan Chauhan"
+  logo text — an 80-facet mosaic sphere with SMIL-driven rotation, a fixed radial
+  highlight/shadow overlay to sell the 3D roundness, and a few independently pulsing
+  glint dots. Placed in `index.html` and `repository.html`.
+
+**Theme**
+- Removed the hand-traced pine-forest treeline from the Contact footer (`.footer-trees`)
+  and its supporting CSS/comments, at the user's request.
+
 ## 2026-08-03
 
 **Work section**
