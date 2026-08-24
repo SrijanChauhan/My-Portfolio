@@ -9,8 +9,7 @@
   /* The Outfield / The Night Game — album art gradient. Original
      first-iteration blue tones, held in the blue range the whole way
      down the page — including Contact, so there's no seam/page-break
-     into a different tone. The tree silhouette in the footer (see
-     .footer-trees) reads against this blue instead of a black band. */
+     into a different tone. */
   --night-gradient: linear-gradient(
     180deg,
     #16324a 0%,
@@ -103,7 +102,14 @@ header{
   color:#fff;
 }
 nav.wrap{display:flex; align-items:center; justify-content:space-between; height:64px; position:relative;}
-.logo{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:20px; font-weight:600;}
+.logo{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:20px; font-weight:600; display:inline-flex; align-items:center; gap:8px;}
+.mirrorball{display:block; flex:none; filter:drop-shadow(0 1px 3px rgba(0,0,0,.35));}
+.mirrorball .glint{animation:glint-pulse 2.4s ease-in-out infinite;}
+@keyframes glint-pulse{0%,100%{opacity:.15;} 50%{opacity:1;}}
+@media (prefers-reduced-motion:reduce){
+  .mirrorball animateTransform{display:none;}
+  .mirrorball .glint{animation:none !important;}
+}
 .nav-group{display:flex; align-items:center; gap:24px;}
 .navlinks{display:flex; gap:24px; align-items:center; font-size:14px; color:#fff;}
 .navlinks a{transition:opacity .15s; opacity:.75;}
@@ -323,12 +329,6 @@ h1 em{font-style:italic; color:var(--signal); font-weight:400;}
 footer{
   position:relative; overflow:hidden;
   padding:100px 0 32px;
-}
-.footer-trees{
-  position:absolute; left:0; right:0; bottom:0; width:100%;
-  height:clamp(110px, 16vw, 210px);
-  z-index:0; pointer-events:none;
-  fill:#0a1712; opacity:.9;
 }
 .footer-dots{position:absolute; inset:0; pointer-events:none; z-index:0;}
 .footer-dots i{

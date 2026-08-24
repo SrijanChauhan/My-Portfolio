@@ -13,7 +13,50 @@
 
 <header>
   <nav class="wrap">
-    <a href="index.html" class="logo">Srijan Chauhan</a>
+    <a href="index.html" class="logo">
+      <svg class="mirrorball" width="26" height="26" viewBox="0 0 22 22" aria-hidden="true">
+        <defs>
+          <clipPath id="ballClip"><circle cx="11" cy="11" r="8.5"/></clipPath>
+          <filter id="bigGlow" x="-150%" y="-150%" width="400%" height="400%">
+            <feGaussianBlur stdDeviation="2.2"/>
+          </filter>
+          <pattern id="facetPattern" x="0" y="0" width="2.2" height="2.2" patternUnits="userSpaceOnUse">
+            <rect width="1.1" height="1.1" fill="#eef1f5" stroke="rgba(9,10,12,.45)" stroke-width=".08"/>
+            <rect x="1.1" width="1.1" height="1.1" fill="#8d939b" stroke="rgba(9,10,12,.45)" stroke-width=".08"/>
+            <rect y="1.1" width="1.1" height="1.1" fill="#c3c8d0" stroke="rgba(9,10,12,.45)" stroke-width=".08"/>
+            <rect x="1.1" y="1.1" width="1.1" height="1.1" fill="#666b73" stroke="rgba(9,10,12,.45)" stroke-width=".08"/>
+          </pattern>
+          <radialGradient id="sphereShade" cx="30%" cy="26%" r="80%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity=".75"/>
+            <stop offset="30%" stop-color="#ffffff" stop-opacity="0"/>
+            <stop offset="68%" stop-color="#05060a" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#05060a" stop-opacity=".62"/>
+          </radialGradient>
+        </defs>
+
+        <circle cx="11" cy="11" r="9.6" fill="#fff" opacity=".1" filter="url(#bigGlow)"/>
+
+        <g clip-path="url(#ballClip)">
+          <g>
+            <animateTransform attributeName="transform" type="rotate" from="0 11 11" to="360 11 11" dur="5s" repeatCount="indefinite"/>
+            <rect x="-15" y="-15" width="52" height="52" fill="url(#facetPattern)"/>
+          </g>
+          <rect x="2.5" y="2.5" width="17" height="17" fill="url(#sphereShade)"/>
+          <circle class="glint" cx="7" cy="8.6" r=".7" fill="#fff" style="animation-delay:0s"/>
+          <circle class="glint" cx="14.6" cy="7.4" r=".45" fill="#fff" style="animation-delay:.6s"/>
+          <circle class="glint" cx="5.2" cy="13.6" r=".4" fill="#fff" style="animation-delay:1.2s"/>
+          <circle class="glint" cx="15.8" cy="14.4" r=".5" fill="#fff" style="animation-delay:1.8s"/>
+          <circle class="glint" cx="10.2" cy="17.2" r=".4" fill="#fff" style="animation-delay:.3s"/>
+        </g>
+        <circle cx="11" cy="11" r="8.5" fill="none" stroke="rgba(0,0,0,.4)" stroke-width=".35"/>
+
+        <path d="M2.6,1.4 Q3.7,2.5 4.8,2.6 Q3.7,2.7 2.6,3.8 Q2.5,2.7 1.4,2.6 Q2.5,2.5 2.6,1.4 Z" fill="#fff" opacity=".95"/>
+        <path d="M19.6,4.8 Q20.3,5.5 21,5.6 Q20.3,5.7 19.6,6.4 Q19.5,5.7 18.8,5.6 Q19.5,5.5 19.6,4.8 Z" fill="#fff" opacity=".8"/>
+        <path d="M18.6,17.4 Q19.15,17.95 19.7,18 Q19.15,18.05 18.6,18.6 Q18.55,18.05 18,18 Q18.55,17.95 18.6,17.4 Z" fill="#fff" opacity=".7"/>
+        <path d="M6.6,20 Q7,20.4 7.4,20.45 Q7,20.5 6.6,20.9 Q6.55,20.5 6.15,20.45 Q6.55,20.4 6.6,20 Z" fill="#fff" opacity=".6"/>
+      </svg>
+      Srijan Chauhan
+    </a>
     <div class="nav-group">
       <div class="navlinks" id="navlinks">
         <a href="#work">Work</a>
@@ -254,9 +297,6 @@
 </section>
 
 <footer id="contact">
-  <svg class="footer-trees" viewBox="0 0 1440 260" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-    <path d="M0.0,260 L7.6,157.9 L15.3,158.0 L22.9,130.6 L30.5,119.8 L37.9,130.9 L45.3,159.3 L52.6,160.0 L69.0,154.7 L78.0,156.0 L87.0,126.8 L95.9,120.1 L102.0,129.7 L108.0,157.0 L114.0,154.5 L128.2,149.4 L136.4,142.9 L144.7,107.4 L152.9,95.5 L159.7,109.1 L166.4,138.6 L173.2,144.6 L188.2,142.7 L196.3,143.4 L204.5,110.5 L212.6,99.8 L219.5,108.1 L226.3,140.6 L233.2,141.4 L246.3,151.0 L252.6,135.7 L258.9,89.0 L265.2,65.3 L273.9,87.9 L282.6,131.8 L291.3,149.2 L307.1,150.8 L314.1,150.7 L321.2,116.2 L328.2,107.2 L336.2,114.7 L344.1,150.4 L352.1,148.4 L366.5,137.3 L373.0,135.1 L379.5,96.9 L386.0,82.9 L394.5,96.0 L403.0,131.0 L411.5,138.1 L426.9,155.0 L433.7,149.8 L440.6,111.0 L447.4,91.2 L455.6,106.7 L463.7,146.3 L471.9,159.2 L488.3,150.6 L496.6,149.3 L504.9,124.0 L513.2,115.0 L519.9,120.0 L526.6,147.6 L533.3,145.6 L547.5,132.1 L555.0,115.3 L562.5,76.1 L570.1,56.6 L577.5,79.6 L585.0,116.0 L592.5,131.5 L606.5,148.3 L612.9,131.9 L619.4,84.8 L625.9,63.1 L634.4,85.2 L642.9,132.3 L651.5,150.7 L667.9,141.7 L675.9,130.7 L683.8,87.2 L691.7,70.8 L698.8,89.8 L705.9,129.5 L712.9,140.7 L726.9,147.0 L733.8,150.0 L740.7,127.2 L747.6,119.8 L755.7,124.7 L763.8,150.2 L771.9,150.0 L787.9,155.5 L795.8,144.9 L803.7,104.8 L811.6,87.7 L818.7,106.8 L825.8,146.3 L832.9,154.9 L846.2,154.6 L852.4,161.1 L858.5,140.1 L864.7,138.1 L873.5,139.3 L882.4,161.5 L891.2,158.2 L907.1,153.9 L914.2,150.5 L921.3,120.2 L928.4,113.4 L936.3,124.7 L944.2,151.7 L952.1,151.3 L966.7,150.4 L973.3,146.9 L980.0,121.1 L986.7,113.6 L995.0,119.5 L1003.3,146.4 L1011.7,149.9 L1028.5,153.1 L1037.0,150.4 L1045.5,122.5 L1054.0,111.6 L1060.5,120.6 L1067.0,154.6 L1073.5,155.5 L1086.4,157.6 L1092.7,157.7 L1099.1,125.8 L1105.5,120.9 L1114.1,129.7 L1122.7,154.5 L1131.4,153.9 L1148.4,152.6 L1156.8,139.2 L1165.3,100.7 L1173.7,85.4 L1180.3,103.8 L1186.8,139.5 L1193.4,150.9 L1207.2,146.4 L1214.5,139.7 L1221.7,110.3 L1228.9,104.3 L1236.7,110.7 L1244.5,145.6 L1252.2,144.7 L1268.8,144.7 L1277.6,130.9 L1286.3,82.6 L1295.1,59.2 L1301.3,83.4 L1307.6,127.6 L1313.8,147.1 L1326.2,155.9 L1332.4,156.8 L1338.6,130.0 L1344.8,120.7 L1353.6,124.9 L1362.4,156.1 L1371.2,152.1 L1388.7,143.6 L1397.4,128.2 L1406.1,86.7 L1414.8,63.8 L1421.1,85.9 L1427.4,127.7 L1433.7,140.5 L1440,260 Z"/>
-  </svg>
   <div class="footer-dots" aria-hidden="true">
     <i></i><i></i><i></i><i></i><i></i><i></i>
   </div>
