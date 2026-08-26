@@ -171,12 +171,12 @@ h1 em{font-style:italic; color:var(--signal); font-weight:400;}
 .hero-stats{display:flex; gap:14px; margin-top:56px;}
 .stat{
   flex:1; padding:20px 18px;
-  background:#dc2626;
-  border:1px solid #dc2626;
+  background:rgba(220,38,38,.85);
+  border:1px solid rgba(220,38,38,.85);
   border-radius:12px;
   transition:background .15s, border-color .15s;
 }
-.stat:hover{background:#c11f1f; border-color:#c11f1f;}
+.stat:hover{background:rgba(193,31,31,.9); border-color:rgba(193,31,31,.9);}
 .stat .num{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:30px; font-weight:500; color:#fff;}
 .stat .label{font-size:12px; color:rgba(255,255,255,.85); margin-top:6px; font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;}
 
@@ -204,21 +204,6 @@ h1 em{font-style:italic; color:var(--signal); font-weight:400;}
   overflow:hidden;
 }
 .project-media img{width:100%; height:100%; object-fit:contain; display:block;}
-.project-media-stack{
-  position:relative;
-  background:linear-gradient(160deg, #1d4566, #16324a);
-}
-.project-media-stack img{
-  position:absolute; top:50%; left:50%; width:40%; height:auto; max-height:78%;
-  object-fit:contain; border-radius:10px;
-  box-shadow:0 14px 28px rgba(0,0,0,.4);
-  transition:transform .25s ease;
-}
-.project-media-stack img:nth-child(1){transform:translate(-84%, -50%) rotate(-8deg); z-index:1;}
-.project-media-stack img:nth-child(2){transform:translate(-50%, -54%) rotate(3deg); z-index:2;}
-.project-media-stack img:nth-child(3){transform:translate(-16%, -50%) rotate(11deg); z-index:1;}
-.project-media-stack:hover img:nth-child(1){transform:translate(-90%, -50%) rotate(-11deg);}
-.project-media-stack:hover img:nth-child(3){transform:translate(-10%, -50%) rotate(14deg);}
 .project-media svg{width:100%; height:100%; display:block;}
 .chart-title{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:.06em; fill:var(--ink-soft);}
 .chart-axis{stroke:var(--line); stroke-width:1;}
@@ -311,7 +296,7 @@ h1 em{font-style:italic; color:var(--signal); font-weight:400;}
   padding:26px 0; border-bottom:1px solid var(--line); align-items:baseline;
   transition:background .15s;
 }
-.entry:hover{background:rgba(36,71,232,.03);}
+.entry:hover{background:rgba(108,147,255,.05);}
 .entry .date{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:12px; color:var(--ink-soft);}
 .entry-type{
   font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px;
@@ -406,7 +391,6 @@ footer h2{
   h1{max-width:100%;}
   .footer-top{grid-template-columns:1fr; gap:40px;}
   footer{padding-top:72px;}
-  .footer-bg{font-size:min(38vw, 200px);}
 }
 
 /* NAV — mobile collapse. Links + résumé CTA fold into a dropdown
@@ -441,10 +425,6 @@ footer h2{
 /* Anchored under the vinyl button, glass like the header. Rolls out
    downward on open instead of just fading in — transform-origin sits
    at the top-right, right where the record button is. */
-.sc-hidden{
-  position:fixed; width:1px; height:1px; opacity:0;
-  pointer-events:none; overflow:hidden; border:0;
-}
 .player{
   position:absolute; top:calc(100% + 10px); right:0; z-index:40;
   display:flex; flex-direction:column; gap:10px;
