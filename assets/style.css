@@ -171,14 +171,14 @@ h1 em{font-style:italic; color:var(--signal); font-weight:400;}
 .hero-stats{display:flex; gap:14px; margin-top:56px;}
 .stat{
   flex:1; padding:20px 18px;
-  background:rgba(220,38,38,.1);
-  border:1px solid rgba(220,38,38,.45);
+  background:#dc2626;
+  border:1px solid #dc2626;
   border-radius:12px;
   transition:background .15s, border-color .15s;
 }
-.stat:hover{background:rgba(220,38,38,.16); border-color:rgba(220,38,38,.7);}
-.stat .num{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:30px; font-weight:500; color:#f04747;}
-.stat .label{font-size:12px; color:var(--ink-soft); margin-top:6px; font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;}
+.stat:hover{background:#c11f1f; border-color:#c11f1f;}
+.stat .num{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:30px; font-weight:500; color:#fff;}
+.stat .label{font-size:12px; color:rgba(255,255,255,.85); margin-top:6px; font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;}
 
 /* SECTION HEAD */
 .section-head{
@@ -441,6 +441,10 @@ footer h2{
 /* Anchored under the vinyl button, glass like the header. Rolls out
    downward on open instead of just fading in — transform-origin sits
    at the top-right, right where the record button is. */
+.sc-hidden{
+  position:fixed; width:1px; height:1px; opacity:0;
+  pointer-events:none; overflow:hidden; border:0;
+}
 .player{
   position:absolute; top:calc(100% + 10px); right:0; z-index:40;
   display:flex; flex-direction:column; gap:10px;

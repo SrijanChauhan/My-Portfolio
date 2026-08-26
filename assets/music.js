@@ -1,19 +1,21 @@
 /* ─────────────────────────────────────────────────────────────
-   AMBIENT PLAYLIST — hosted locally in assets/audio/, royalty-free
-   tracks from Pixabay Music. Never autoplays — browsers block it
-   and visitors hate it.
+   PLAYLIST — driven by the SoundCloud Widget API. The iframe is
+   visually hidden; these buttons are the only player UI visitors
+   see. Never autoplays — browsers block it and visitors hate it.
    ───────────────────────────────────────────────────────────── */
 
 const PLAYLIST = [
-  { title: "Funk & Breakbeat", artist: "alexguz", src: "assets/audio/alexguz-funk-amp-breakbeat-541097.mp3" },
-  { title: "Better Day", artist: "penguinmusic", src: "assets/audio/penguinmusic-better-day-186374.mp3" }
+  { title: "pop", artist: "Harry Styles", url: "https://api.soundcloud.com/tracks/2277805115" },
+  { title: "5 Dollar Pony Rides", artist: "Mac Miller", url: "https://api.soundcloud.com/tracks/1988665707" },
+  { title: "Redbone", artist: "Childish Gambino", url: "https://api.soundcloud.com/tracks/291270561" },
+  { title: "Pyramids", artist: "Frank Ocean", url: "https://api.soundcloud.com/tracks/1647148785" }
 ];
 
 (function () {
   const btn    = document.querySelector('.music-btn');
-  const audio  = document.getElementById('ambient');
+  const iframe = document.getElementById('sc-player');
   const player = document.getElementById('player');
-  if (!btn || !audio || !PLAYLIST.length) return;
+  if (!btn || !iframe || typeof SC === 'undefined' || !PLAYLIST.length) return;
 
   const titleEl = player.querySelector('.pl-title');
   const artEl   = player.querySelector('.pl-artist');
@@ -21,23 +23,16 @@ const PLAYLIST = [
   const playBtn = player.querySelector('.pl-play');
 
   const KEY = 'ambient-state';
-  let i = 0, failures = 0;
+  let i = 0, playing = false, ready = false;
+  const widget = SC.Widget(iframe);
 
-  audio.volume = 0.18;                       // quiet enough to read over
-
-  // Restore track + position across page navigation
   try {
     const s = JSON.parse(sessionStorage.getItem(KEY) || '{}');
     if (typeof s.i === 'number') i = s.i % PLAYLIST.length;
-    if (s.t) audio.currentTime = s.t;
   } catch (e) {}
 
-  function save(playing) {
-    try {
-      sessionStorage.setItem(KEY, JSON.stringify({
-        i: i, t: audio.currentTime, on: !!playing
-      }));
-    } catch (e) {}
+  function save(on) {
+    try { sessionStorage.setItem(KEY, JSON.stringify({ i: i, on: !!on })); } catch (e) {}
   }
 
   function paint() {
@@ -45,61 +40,54 @@ const PLAYLIST = [
     titleEl.textContent = t.title;
     artEl.textContent   = t.artist;
     posEl.textContent   = String(i + 1).padStart(2, '0') + '/' + String(PLAYLIST.length).padStart(2, '0');
-    const on = !audio.paused;
-    playBtn.textContent = on ? '❚❚' : '▶';
-    playBtn.setAttribute('aria-label', on ? 'Pause' : 'Play');
-    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-    player.classList.toggle('open', on || !!player.dataset.opened);
+    playBtn.textContent = playing ? '❚❚' : '▶';
+    playBtn.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+    btn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+    player.classList.toggle('open', playing || !!player.dataset.opened);
   }
 
   function load(index, autoplay) {
     i = (index + PLAYLIST.length) % PLAYLIST.length;
-    audio.src = PLAYLIST[i].src;
     paint();
-    if (autoplay) start();
+    widget.load(PLAYLIST[i].url, { auto_play: !!autoplay, show_artwork: false, callback: paint });
   }
-
-  function start() {
-    audio.play()
-      .then(() => { failures = 0; player.dataset.opened = '1'; paint(); save(true); })
-      .catch(() => { paint(); });        // blocked until a genuine click
-  }
-
-  // Skip past a broken file instead of stalling on it
-  audio.addEventListener('error', () => {
-    if (++failures >= PLAYLIST.length) { titleEl.textContent = 'Playlist unavailable'; return; }
-    load(i + 1, true);
-  });
-  audio.addEventListener('ended', () => load(i + 1, true));   // continuous loop
-  audio.addEventListener('timeupdate', () => { if (!audio.paused) save(true); });
-  audio.addEventListener('play', paint);
-  audio.addEventListener('pause', () => { paint(); save(false); });
 
   function toggle() {
-    if (audio.paused) { player.dataset.opened = '1'; start(); }
-    else { audio.pause(); }
+    if (!ready) return;
+    if (!playing) { player.dataset.opened = '1'; widget.play(); }
+    else { widget.pause(); }
   }
+
+  widget.bind(SC.Widget.Events.READY, function () {
+    ready = true;
+    if (i !== 0) load(i, false); else paint();
+
+    widget.bind(SC.Widget.Events.PLAY,  function () { playing = true;  player.dataset.opened = '1'; paint(); save(true); });
+    widget.bind(SC.Widget.Events.PAUSE, function () { playing = false; paint(); save(false); });
+    widget.bind(SC.Widget.Events.FINISH, function () { load(i + 1, true); });
+    widget.bind(SC.Widget.Events.ERROR,  function () { load(i + 1, true); });
+
+    // If sound was on before they changed pages, resume on their first interaction
+    let wanted = false;
+    try { wanted = JSON.parse(sessionStorage.getItem(KEY) || '{}').on; } catch (e) {}
+    if (wanted) {
+      const resume = () => {
+        player.dataset.opened = '1'; widget.play();
+        document.removeEventListener('click', resume);
+        document.removeEventListener('keydown', resume);
+      };
+      document.addEventListener('click', resume);
+      document.addEventListener('keydown', resume);
+    }
+  });
 
   btn.addEventListener('click', toggle);
   playBtn.addEventListener('click', toggle);
   player.querySelector('.pl-next').addEventListener('click', () => load(i + 1, true));
   player.querySelector('.pl-prev').addEventListener('click', () => load(i - 1, true));
   player.querySelector('.pl-close').addEventListener('click', () => {
-    audio.pause(); delete player.dataset.opened; paint();
+    widget.pause(); delete player.dataset.opened; paint();
   });
 
-  load(i, false);
-
-  // If sound was on before they changed pages, resume on their first interaction
-  let wanted = false;
-  try { wanted = JSON.parse(sessionStorage.getItem(KEY) || '{}').on; } catch (e) {}
-  if (wanted) {
-    const resume = () => {
-      start();
-      document.removeEventListener('click', resume);
-      document.removeEventListener('keydown', resume);
-    };
-    document.addEventListener('click', resume);
-    document.addEventListener('keydown', resume);
-  }
+  paint();
 })();

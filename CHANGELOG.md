@@ -2,6 +2,26 @@
 
 Dated release notes for this site. Newest first.
 
+## 2026-08-26
+
+**Nav**
+- Fixed the mirror ball icon: the facet pattern previously spun in a full circle
+  (read as a flat disc spinning), now scrolls horizontally instead so it reads as
+  the ball rotating on a vertical axis, like a real disco ball.
+- Recolored the ball's five pulsing glint dots from white to a yellow/red/blue
+  cycle.
+
+**Hero**
+- Restyled the stat cards from translucent red to solid opaque red (`#dc2626`)
+  with white text, matching a referenced brand icon.
+
+**Music player**
+- Replaced the local-MP3 ambient playlist with a SoundCloud-backed playlist:
+  *pop* (Harry Styles), *5 Dollar Pony Rides* (Mac Miller), *Redbone* (Childish
+  Gambino), and *Pyramids* (Frank Ocean). Uses the SoundCloud Widget API through
+  a visually hidden iframe, driven entirely by the existing prev/play/next
+  player UI — full-length playback for every visitor, no login required.
+
 ## 2026-08-24
 
 **Nav**

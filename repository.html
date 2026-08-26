@@ -38,15 +38,15 @@
 
         <g clip-path="url(#ballClip)">
           <g>
-            <animateTransform attributeName="transform" type="rotate" from="0 11 11" to="360 11 11" dur="5s" repeatCount="indefinite"/>
+            <animateTransform attributeName="transform" type="translate" from="0 0" to="-4.4 0" dur="1.6s" repeatCount="indefinite"/>
             <rect x="-15" y="-15" width="52" height="52" fill="url(#facetPattern)"/>
           </g>
           <rect x="2.5" y="2.5" width="17" height="17" fill="url(#sphereShade)"/>
-          <circle class="glint" cx="7" cy="8.6" r=".7" fill="#fff" style="animation-delay:0s"/>
-          <circle class="glint" cx="14.6" cy="7.4" r=".45" fill="#fff" style="animation-delay:.6s"/>
-          <circle class="glint" cx="5.2" cy="13.6" r=".4" fill="#fff" style="animation-delay:1.2s"/>
-          <circle class="glint" cx="15.8" cy="14.4" r=".5" fill="#fff" style="animation-delay:1.8s"/>
-          <circle class="glint" cx="10.2" cy="17.2" r=".4" fill="#fff" style="animation-delay:.3s"/>
+          <circle class="glint" cx="7" cy="8.6" r=".7" fill="#ffd23f" style="animation-delay:0s"/>
+          <circle class="glint" cx="14.6" cy="7.4" r=".45" fill="#ff4d4d" style="animation-delay:.6s"/>
+          <circle class="glint" cx="5.2" cy="13.6" r=".4" fill="#3fa9ff" style="animation-delay:1.2s"/>
+          <circle class="glint" cx="15.8" cy="14.4" r=".5" fill="#ffd23f" style="animation-delay:1.8s"/>
+          <circle class="glint" cx="10.2" cy="17.2" r=".4" fill="#ff4d4d" style="animation-delay:.3s"/>
         </g>
         <circle cx="11" cy="11" r="8.5" fill="none" stroke="rgba(0,0,0,.4)" stroke-width=".35"/>
 
@@ -136,7 +136,8 @@
   </div>
 </footer>
 
-<audio id="ambient" preload="none"></audio>
+<iframe id="sc-player" class="sc-hidden" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F2277805115&amp;auto_play=false&amp;show_artwork=false&amp;visual=false" scrolling="no" frameborder="no" allow="autoplay"></iframe>
+<script src="https://w.soundcloud.com/player/api.js"></script>
 <script src="assets/music.js"></script>
 <script src="assets/nav.js"></script>
 
