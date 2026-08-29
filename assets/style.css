@@ -277,6 +277,51 @@ body.story-modal-open{overflow:hidden;}
 .project-media-brand{background:none; padding:0;}
 .project-media-brand svg{width:100%; height:100%; display:block;}
 
+/* PHOTO COLLAGE TEASER — clickable entry point into the full-screen
+   photo story, used in place of a chart for image-driven case studies. */
+.photo-story-trigger{position:relative; background:#14171C; cursor:pointer;}
+.photo-collage{position:absolute; inset:0;}
+.photo-collage img{
+  position:absolute; object-fit:cover; border:2px solid #14171C;
+  box-shadow:0 6px 18px rgba(0,0,0,.35);
+}
+.photo-collage img:nth-child(1){width:70%; height:70%; top:4%; left:4%; z-index:1;}
+.photo-collage img:nth-child(2){width:48%; height:52%; bottom:6%; right:4%; z-index:2;}
+.photo-collage img:nth-child(3){width:40%; height:44%; top:8%; right:6%; z-index:3;}
+.photo-story-trigger:hover .photo-collage img{filter:brightness(1.06);}
+.photo-collage-cta{
+  position:absolute; left:14px; bottom:14px; z-index:4;
+  font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size:12px; font-weight:600; color:#fff; letter-spacing:.02em;
+  padding:6px 12px; border-radius:20px;
+  background:rgba(10,14,20,.55); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+}
+
+/* PHOTO STORY — full-screen Instagram-style viewer: image only, no text,
+   paged with tap zones / arrow keys, progress bars mark position. */
+.photo-story{position:fixed; inset:0; z-index:110; display:flex; align-items:center; justify-content:center;}
+.photo-story[hidden]{display:none;}
+.photo-story-backdrop{position:absolute; inset:0; background:#000;}
+.photo-story-panel{
+  position:relative; z-index:1; width:100%; height:100%;
+  max-width:520px; margin:0 auto;
+  display:flex; align-items:center; justify-content:center;
+}
+.photo-story-img{max-width:100%; max-height:100%; object-fit:contain; display:block;}
+.photo-story-bars{position:absolute; top:16px; left:16px; right:16px; z-index:2; display:flex; gap:6px;}
+.photo-story-bar{flex:1; height:3px; border-radius:3px; background:rgba(255,255,255,.3); overflow:hidden;}
+.photo-story-bar-fill{display:block; height:100%; width:0; background:#fff;}
+.photo-story-bar.active .photo-story-bar-fill{width:100%; transition:width .2s linear;}
+.photo-story-bar.done .photo-story-bar-fill{width:100%;}
+.photo-story-close{
+  position:absolute; top:28px; right:16px; z-index:2;
+  width:32px; height:32px; border-radius:50%; border:none;
+  background:rgba(0,0,0,.4); color:#fff; font-size:20px; line-height:1; cursor:pointer;
+}
+.photo-story-zone{position:absolute; top:0; bottom:0; width:35%; border:none; background:none; cursor:pointer; padding:0;}
+.photo-story-prev{left:0;}
+.photo-story-next{right:0;}
+
 .cd-title{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:19px; font-weight:700; letter-spacing:.08em; fill:#D6FF3F;}
 .cd-subtitle{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:.12em; fill:rgba(255,255,255,.5);}
 .cd-arc-track{fill:none; stroke:#242a1a; stroke-width:6; stroke-linecap:round;}
