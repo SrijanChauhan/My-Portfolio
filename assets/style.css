@@ -292,20 +292,18 @@ body.story-modal-open{overflow:hidden;}
 .project-media-brand{background:none; padding:0;}
 .project-media-brand svg{width:100%; height:100%; display:block;}
 
-/* PHOTO COLLAGE TEASER — clickable entry point into the full-screen
-   photo story, used in place of a chart for image-driven case studies. */
-.photo-story-trigger{position:relative; background:#14171C; cursor:pointer;}
-.photo-collage{position:absolute; inset:0;}
-.photo-collage img{
-  position:absolute; object-fit:cover; border:2px solid #14171C;
-  box-shadow:0 6px 18px rgba(0,0,0,.35);
-}
-.photo-collage img:nth-child(1){width:70%; height:70%; top:4%; left:4%; z-index:1;}
-.photo-collage img:nth-child(2){width:48%; height:52%; bottom:6%; right:4%; z-index:2;}
-.photo-collage img:nth-child(3){width:40%; height:44%; top:8%; right:6%; z-index:3;}
-.photo-story-trigger:hover .photo-collage img{filter:brightness(1.06);}
-.photo-collage-cta{
-  position:absolute; left:14px; bottom:14px; z-index:4;
+/* PHOTO STORY TRIGGER — any element that opens the full-screen photo
+   viewer (a project-media hero on index, gallery thumbnails on a case
+   study page). */
+.photo-story-trigger{cursor:pointer;}
+
+/* HERO MEDIA — a single clickable banner image that hands off to a
+   full case-study page, used in place of a chart. */
+.project-media-hero{position:relative; display:block; background:#14171C;}
+.project-media-hero img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .3s ease;}
+.project-media-hero:hover img{transform:scale(1.03);}
+.hero-media-cta{
+  position:absolute; left:14px; bottom:14px; z-index:1;
   font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size:12px; font-weight:600; color:#fff; letter-spacing:.02em;
   padding:6px 12px; border-radius:20px;
@@ -664,4 +662,97 @@ footer h2{
 
 @media (max-width:900px){
   .rail{display:none;}
+}
+
+/* ─────────────────────────────────────────────────────────────
+   GRAMEEN PAY CASE STUDY PAGE — full-bleed hero, photo gallery
+   (reuses the .photo-story-trigger viewer), and a data section
+   grounded in the FSS market survey. Brand red/blue, not the
+   portfolio's default palette — see project-media-brand note above.
+   ───────────────────────────────────────────────────────────── */
+.gp-hero{position:relative; height:64vh; min-height:440px; display:flex; align-items:flex-end; overflow:hidden;}
+.gp-hero img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;}
+.gp-hero::after{
+  content:''; position:absolute; inset:0; z-index:1;
+  background:linear-gradient(180deg, rgba(11,13,16,.1) 0%, rgba(11,13,16,.55) 60%, var(--paper) 100%);
+}
+.gp-hero-content{position:relative; z-index:2; padding-bottom:44px; width:100%;}
+.gp-back{display:inline-flex; align-items:center; gap:6px; font-size:13px; color:rgba(255,255,255,.75); margin-bottom:28px; transition:color .15s;}
+.gp-back:hover{color:#fff;}
+.gp-hero-meta{font-size:13px; color:rgba(255,255,255,.7); margin-bottom:14px; letter-spacing:.02em;}
+.gp-hero h1{font-size:clamp(30px,5vw,50px); font-weight:600; line-height:1.12; max-width:800px; color:#fff;}
+.gp-hero-tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:20px;}
+
+.gp-section{padding:56px 0; border-bottom:1px solid var(--line);}
+.gp-section:last-of-type{border-bottom:none;}
+.gp-section h2{font-size:22px; font-weight:600; margin-bottom:8px; color:var(--ink);}
+.gp-lede{font-size:15px; color:var(--ink-soft); max-width:620px; margin-bottom:32px; line-height:1.6;}
+.gp-intro p{font-size:17px; line-height:1.75; color:var(--ink-soft); max-width:760px; margin-bottom:18px;}
+.gp-intro p strong{color:var(--ink); font-weight:600;}
+
+.gp-gallery{display:grid; grid-template-columns:repeat(4, 1fr); grid-auto-rows:130px; gap:10px;}
+.gp-gallery .photo-story-trigger{display:block; width:100%; height:100%; border-radius:6px; overflow:hidden; padding:0; border:none;}
+.gp-gallery .photo-story-trigger img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .25s ease, filter .25s ease;}
+.gp-gallery .photo-story-trigger:hover img{transform:scale(1.04); filter:brightness(1.08);}
+.gp-gallery .photo-story-trigger:first-child{grid-column:span 2; grid-row:span 2;}
+
+.gp-stats{display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; margin-bottom:44px;}
+.gp-stat{padding:18px 20px; border:1px solid var(--line); border-radius:8px;}
+.gp-stat .num{font-size:26px; font-weight:700; color:var(--ink); display:block;}
+.gp-stat .label{font-size:12px; color:var(--ink-soft);}
+
+.gp-subhead{font-size:13px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); margin:40px 0 18px;}
+.gp-subhead:first-of-type{margin-top:0;}
+
+.gp-legend{display:flex; gap:18px; font-size:12px; color:var(--ink-soft); margin-bottom:18px;}
+.gp-legend span{display:inline-flex; align-items:center; gap:6px;}
+.gp-legend i{width:10px; height:10px; border-radius:3px; display:inline-block;}
+.gp-legend .lg-income{background:#c9483a;}
+.gp-legend .lg-savings{background:#5c81e6;}
+
+.gp-barchart{display:flex; flex-direction:column; gap:14px; max-width:680px;}
+.gp-bar-row{display:grid; grid-template-columns:70px 1fr; gap:14px; align-items:center;}
+.gp-bar-region{font-size:13px; color:var(--ink-soft);}
+.gp-bar-tracks{display:flex; flex-direction:column; gap:6px;}
+.gp-bar-line{display:grid; grid-template-columns:1fr 128px; gap:10px; align-items:center;}
+.gp-bar-track{position:relative; height:10px; border-radius:5px; background:rgba(255,255,255,.06); overflow:hidden;}
+.gp-bar-fill{display:block; height:100%; border-radius:5px; min-width:2px;}
+.gp-bar-fill.income{background:#c9483a;}
+.gp-bar-fill.savings{background:#5c81e6;}
+.gp-bar-value{font-size:11px; color:var(--ink-soft); white-space:nowrap;}
+
+.gp-single-bars{display:flex; flex-direction:column; gap:14px; max-width:680px;}
+.gp-single-bars .gp-bar-row{grid-template-columns:70px 1fr;}
+.gp-single-bars .gp-bar-line{grid-template-columns:1fr 190px;}
+.gp-single-bars .gp-bar-track{height:12px;}
+.gp-single-bars .gp-bar-fill{background:#c9483a;}
+.gp-single-bars .gp-bar-value strong{color:var(--ink); font-weight:600;}
+
+.gp-personas{display:grid; grid-template-columns:repeat(2, 1fr); gap:18px;}
+.gp-persona{padding:22px; border:1px solid var(--line); border-radius:8px;}
+.gp-persona h3{font-size:16px; font-weight:600; margin-bottom:8px; color:var(--ink);}
+.gp-persona p{font-size:14px; color:var(--ink-soft); line-height:1.65;}
+
+.gp-journey{display:grid; grid-template-columns:repeat(3, 1fr); gap:24px 20px;}
+.gp-journey-step{padding-top:18px; border-top:1px solid var(--line);}
+.gp-journey-num{font-size:12px; color:#c9483a; font-weight:700; letter-spacing:.04em; margin-bottom:6px;}
+.gp-journey-step h4{font-size:15px; font-weight:600; margin-bottom:6px; color:var(--ink);}
+.gp-journey-step p{font-size:13px; color:var(--ink-soft); line-height:1.6;}
+
+.gp-profile-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; max-width:760px;}
+.gp-profile-row{padding:14px 16px; border:1px solid var(--line); border-radius:8px;}
+.gp-profile-row .kind{font-size:13px; font-weight:600; color:var(--ink); margin-bottom:4px;}
+.gp-profile-row .who{font-size:13px; color:var(--ink-soft);}
+
+.gp-outcome{background:var(--signal-soft); border-radius:10px; padding:28px 32px; display:flex; align-items:baseline; gap:16px; flex-wrap:wrap; max-width:760px;}
+.gp-outcome .num{font-size:32px; font-weight:700; color:var(--ink);}
+.gp-outcome .label{font-size:14px; color:var(--ink-soft);}
+
+@media (max-width:760px){
+  .gp-hero{height:52vh; min-height:360px;}
+  .gp-stats{grid-template-columns:repeat(2, 1fr);}
+  .gp-gallery{grid-template-columns:repeat(2, 1fr); grid-auto-rows:110px;}
+  .gp-personas{grid-template-columns:1fr;}
+  .gp-journey{grid-template-columns:1fr;}
+  .gp-profile-grid{grid-template-columns:1fr;}
 }

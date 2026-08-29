@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grameen Pay — Srijan Chauhan</title>
+<meta name="description" content="Taking banking to towns the banks don't reach: the full Grameen Pay case study — field research, market survey and GTM strategy.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Ccircle cx='11' cy='11' r='10.5' fill='%2316324a'/%3E%3Ccircle cx='11' cy='11' r='7' fill='%23c3c8d0'/%3E%3Ccircle cx='8.5' cy='8.5' r='1.6' fill='%23fff' opacity='.9'/%3E%3Ccircle cx='13.5' cy='9.5' r='1' fill='%236C93FF'/%3E%3Ccircle cx='9' cy='13.5' r='1' fill='%23ff4d4d'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo-group">
+      <button type="button" class="mirror-btn" aria-pressed="false" aria-label="Spin the mirror ball">
+      <svg class="mirrorball" width="26" height="26" viewBox="0 0 22 22" aria-hidden="true">
+        <defs>
+          <clipPath id="ballClip"><circle cx="11" cy="11" r="8.5"/></clipPath>
+          <filter id="bigGlow" x="-150%" y="-150%" width="400%" height="400%">
+            <feGaussianBlur stdDeviation="2.2"/>
+          </filter>
+          <pattern id="facetPattern" x="0" y="0" width="2.2" height="2.2" patternUnits="userSpaceOnUse">
+            <rect width="1.1" height="1.1" fill="#eef1f5" stroke="rgba(9,10,12,.45)" stroke-width=".08"/>
+            <rect x="1.1" width="1.1" height="1.1" fill="#8d939b" stroke="rgba(9,10,12,.45)" stroke-width=".08"/>
+            <rect y="1.1" width="1.1" height="1.1" fill="#c3c8d0" stroke="rgba(9,10,12,.45)" stroke-width=".08"/>
+            <rect x="1.1" y="1.1" width="1.1" height="1.1" fill="#666b73" stroke="rgba(9,10,12,.45)" stroke-width=".08"/>
+          </pattern>
+          <radialGradient id="sphereShade" cx="30%" cy="26%" r="80%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity=".75"/>
+            <stop offset="30%" stop-color="#ffffff" stop-opacity="0"/>
+            <stop offset="68%" stop-color="#05060a" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#05060a" stop-opacity=".62"/>
+          </radialGradient>
+        </defs>
+
+        <circle cx="11" cy="11" r="9.6" fill="#fff" opacity=".1" filter="url(#bigGlow)"/>
+
+        <g clip-path="url(#ballClip)" class="mirror-face">
+          <animateTransform id="mirrorSpin" attributeName="transform" type="rotate" from="0 11 11" to="360 11 11" dur="2.2s" repeatCount="indefinite" begin="indefinite"/>
+          <g>
+            <animateTransform id="facetShimmer" attributeName="transform" type="translate" from="0 0" to="-4.4 0" dur="1.6s" repeatCount="indefinite"/>
+            <rect x="-15" y="-15" width="52" height="52" fill="url(#facetPattern)"/>
+          </g>
+          <rect x="2.5" y="2.5" width="17" height="17" fill="url(#sphereShade)"/>
+          <circle class="glint" cx="7" cy="8.6" r=".7" fill="#ffd23f" style="animation-delay:0s"/>
+          <circle class="glint" cx="14.6" cy="7.4" r=".45" fill="#ff4d4d" style="animation-delay:.6s"/>
+          <circle class="glint" cx="5.2" cy="13.6" r=".4" fill="#3fa9ff" style="animation-delay:1.2s"/>
+          <circle class="glint" cx="15.8" cy="14.4" r=".5" fill="#ffd23f" style="animation-delay:1.8s"/>
+          <circle class="glint" cx="10.2" cy="17.2" r=".4" fill="#ff4d4d" style="animation-delay:.3s"/>
+        </g>
+        <circle cx="11" cy="11" r="8.5" fill="none" stroke="rgba(0,0,0,.4)" stroke-width=".35"/>
+
+        <path d="M2.6,1.4 Q3.7,2.5 4.8,2.6 Q3.7,2.7 2.6,3.8 Q2.5,2.7 1.4,2.6 Q2.5,2.5 2.6,1.4 Z" fill="#fff" opacity=".95"/>
+        <path d="M19.6,4.8 Q20.3,5.5 21,5.6 Q20.3,5.7 19.6,6.4 Q19.5,5.7 18.8,5.6 Q19.5,5.5 19.6,4.8 Z" fill="#fff" opacity=".8"/>
+        <path d="M18.6,17.4 Q19.15,17.95 19.7,18 Q19.15,18.05 18.6,18.6 Q18.55,18.05 18,18 Q18.55,17.95 18.6,17.4 Z" fill="#fff" opacity=".7"/>
+        <path d="M6.6,20 Q7,20.4 7.4,20.45 Q7,20.5 6.6,20.9 Q6.55,20.5 6.15,20.45 Q6.55,20.4 6.6,20 Z" fill="#fff" opacity=".6"/>
+      </svg>
+      </button>
+      <a href="index.html" class="logo">Srijan Chauhan</a>
+    </div>
+    <div class="nav-group">
+      <div class="navlinks" id="navlinks">
+        <a href="index.html#work">Work</a>
+        <a href="repository.html">Repository</a>
+        <a href="index.html#about">About</a>
+        <a href="assets/resume.pdf" download="Srijan_Chauhan_Resume.pdf" class="cta">Résumé ↓</a>
+      </div>
+      <button class="music-btn" aria-pressed="false" aria-label="Toggle background music">
+        <svg class="vinyl" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+          <circle cx="13" cy="13" r="12" fill="#0B0D10"/>
+          <circle cx="13" cy="13" r="11.5" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+          <circle cx="13" cy="13" r="9" fill="none" stroke="rgba(255,255,255,.12)" stroke-width=".75"/>
+          <circle cx="13" cy="13" r="6.5" fill="none" stroke="rgba(255,255,255,.12)" stroke-width=".75"/>
+          <circle cx="13" cy="13" r="4" fill="var(--signal)"/>
+          <circle cx="13" cy="13" r="1.3" fill="#0B0D10"/>
+        </svg>
+      </button>
+      <button class="nav-burger" aria-expanded="false" aria-controls="navlinks" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="player" id="player">
+        <div class="pl-meta">
+          <div class="pl-title">—</div>
+          <div class="pl-artist">—</div>
+        </div>
+        <div class="pl-controls">
+          <button class="pl-prev" aria-label="Previous track">◀◀</button>
+          <button class="pl-play" aria-label="Play">▶</button>
+          <button class="pl-next" aria-label="Next track">▶▶</button>
+        </div>
+        <span class="pl-pos">01/02</span>
+        <button class="pl-close" aria-label="Close player">&times;</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section class="gp-hero">
+  <img src="assets/images/grameen-pay/field-7.jpg" alt="Field interview under a village shelter, Grameen Pay market survey, Madhya Pradesh">
+  <div class="wrap gp-hero-content">
+    <a href="index.html#work" class="gp-back">← Back to work</a>
+    <div class="gp-hero-meta">Financial Software and Systems · Grameen Pay · 2020–2023 · Financial Inclusion</div>
+    <h1>Taking banking to towns the banks don't reach</h1>
+    <div class="gp-hero-tags">
+      <span class="tag">Financial Inclusion</span>
+      <span class="tag">Agent Banking</span>
+      <span class="tag">0→1</span>
+    </div>
+  </div>
+</section>
+
+<div class="wrap gp-section gp-intro">
+  <p>India's unbanked population needed a channel, not another app nobody could use. <strong>Grameen Pay</strong> is an agent-assisted platform bundling loans, insurance, AEPS and DMT for underserved towns — built to work through a trusted local agent rather than asking someone with no banking history to trust an app.</p>
+  <p>To ground the GTM strategy in how rural consumers actually behave rather than in assumptions, I ran first-hand interviews with <strong>1,154 people</strong> and <strong>7 focus group discussions</strong> across <strong>4 regions</strong> (Bhopal, Gwalior, Indore, Jabalpur) and <strong>28 districts</strong> — in choupals, markets and deep into the villages. Respondents spanned 338 shop owners, 325 farmers, 223 daily-wage earners and 106 salaried workers.</p>
+  <p>That research shaped a financial-inclusion strategy that piloted within <strong>3 months</strong>, then rolled out nationally with 22 developers and 10+ executives.</p>
+</div>
+
+<div class="wrap gp-section">
+  <h2>The field</h2>
+  <p class="gp-lede">Seven photos from interviews and focus group discussions across Madhya Pradesh — click any of them to page through the full set.</p>
+  <div class="gp-gallery">
+    <button type="button" class="photo-story-trigger" data-story="grameen-pay" data-story-index="0" aria-label="Open photo 1 of 7"><img src="assets/images/grameen-pay/field-7.jpg" alt="" loading="lazy"></button>
+    <button type="button" class="photo-story-trigger" data-story="grameen-pay" data-story-index="1" aria-label="Open photo 2 of 7"><img src="assets/images/grameen-pay/field-1.jpg" alt="" loading="lazy"></button>
+    <button type="button" class="photo-story-trigger" data-story="grameen-pay" data-story-index="2" aria-label="Open photo 3 of 7"><img src="assets/images/grameen-pay/field-6.jpg" alt="" loading="lazy"></button>
+    <button type="button" class="photo-story-trigger" data-story="grameen-pay" data-story-index="3" aria-label="Open photo 4 of 7"><img src="assets/images/grameen-pay/field-5.jpg" alt="" loading="lazy"></button>
+    <button type="button" class="photo-story-trigger" data-story="grameen-pay" data-story-index="4" aria-label="Open photo 5 of 7"><img src="assets/images/grameen-pay/field-4.jpg" alt="" loading="lazy"></button>
+    <button type="button" class="photo-story-trigger" data-story="grameen-pay" data-story-index="5" aria-label="Open photo 6 of 7"><img src="assets/images/grameen-pay/field-3.jpg" alt="" loading="lazy"></button>
+    <button type="button" class="photo-story-trigger" data-story="grameen-pay" data-story-index="6" aria-label="Open photo 7 of 7"><img src="assets/images/grameen-pay/field-2.jpg" alt="" loading="lazy"></button>
+  </div>
+</div>
+
+<div class="wrap gp-section">
+  <h2>Research at a glance</h2>
+  <p class="gp-lede">The market survey behind the strategy, region by region.</p>
+
+  <div class="gp-stats">
+    <div class="gp-stat"><span class="num">1,154</span><span class="label">people surveyed</span></div>
+    <div class="gp-stat"><span class="num">4</span><span class="label">regions</span></div>
+    <div class="gp-stat"><span class="num">28</span><span class="label">districts</span></div>
+    <div class="gp-stat"><span class="num">7</span><span class="label">focus groups</span></div>
+  </div>
+
+  <div class="gp-subhead">Average income vs. savings, by region (₹/month)</div>
+  <div class="gp-legend">
+    <span><i class="lg-income"></i>Income</span>
+    <span><i class="lg-savings"></i>Savings</span>
+  </div>
+  <div class="gp-barchart">
+    <div class="gp-bar-row">
+      <span class="gp-bar-region">Bhopal</span>
+      <div class="gp-bar-tracks">
+        <div class="gp-bar-line"><div class="gp-bar-track"><span class="gp-bar-fill income" style="width:68%"></span></div><span class="gp-bar-value">₹18,550</span></div>
+        <div class="gp-bar-line"><div class="gp-bar-track"><span class="gp-bar-fill savings" style="width:15%"></span></div><span class="gp-bar-value">₹4,078</span></div>
+      </div>
+    </div>
+    <div class="gp-bar-row">
+      <span class="gp-bar-region">Indore</span>
+      <div class="gp-bar-tracks">
+        <div class="gp-bar-line"><div class="gp-bar-track"><span class="gp-bar-fill income" style="width:88%"></span></div><span class="gp-bar-value">₹23,666</span></div>
+        <div class="gp-bar-line"><div class="gp-bar-track"><span class="gp-bar-fill savings" style="width:22%"></span></div><span class="gp-bar-value">₹5,822</span></div>
+      </div>
+    </div>
+    <div class="gp-bar-row">
+      <span class="gp-bar-region">Gwalior</span>
+      <div class="gp-bar-tracks">
+        <div class="gp-bar-line"><div class="gp-bar-track"><span class="gp-bar-fill income" style="width:53%"></span></div><span class="gp-bar-value">₹14,306</span></div>
+        <div class="gp-bar-line"><div class="gp-bar-track"><span class="gp-bar-fill savings" style="width:13%"></span></div><span class="gp-bar-value">₹3,542</span></div>
+      </div>
+    </div>
+    <div class="gp-bar-row">
+      <span class="gp-bar-region">Jabalpur</span>
+      <div class="gp-bar-tracks">
+        <div class="gp-bar-line"><div class="gp-bar-track"><span class="gp-bar-fill income" style="width:50%"></span></div><span class="gp-bar-value">₹13,574</span></div>
+        <div class="gp-bar-line"><div class="gp-bar-track"><span class="gp-bar-fill savings" style="width:21%"></span></div><span class="gp-bar-value">₹5,709</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gp-subhead">Interested in microcredit, by region</div>
+  <div class="gp-single-bars">
+    <div class="gp-bar-row">
+      <span class="gp-bar-region">Bhopal</span>
+      <div class="gp-bar-line"><div class="gp-bar-track"><span class="gp-bar-fill" style="width:41%"></span></div><span class="gp-bar-value"><strong>41%</strong> · avg ₹1,09,899</span></div>
+    </div>
+    <div class="gp-bar-row">
+      <span class="gp-bar-region">Indore</span>
+      <div class="gp-bar-line"><div class="gp-bar-track"><span class="gp-bar-fill" style="width:66%"></span></div><span class="gp-bar-value"><strong>66%</strong> · avg ₹74,155</span></div>
+    </div>
+    <div class="gp-bar-row">
+      <span class="gp-bar-region">Gwalior</span>
+      <div class="gp-bar-line"><div class="gp-bar-track"><span class="gp-bar-fill" style="width:79%"></span></div><span class="gp-bar-value"><strong>79%</strong> · avg ₹55,433</span></div>
+    </div>
+    <div class="gp-bar-row">
+      <span class="gp-bar-region">Jabalpur</span>
+      <div class="gp-bar-line"><div class="gp-bar-track"><span class="gp-bar-fill" style="width:52%"></span></div><span class="gp-bar-value"><strong>52%</strong> · avg ₹62,378</span></div>
+    </div>
+  </div>
+
+  <div class="gp-subhead">Interested in insurance, by region</div>
+  <div class="gp-single-bars">
+    <div class="gp-bar-row">
+      <span class="gp-bar-region">Bhopal</span>
+      <div class="gp-bar-line"><div class="gp-bar-track"><span class="gp-bar-fill" style="width:55%"></span></div><span class="gp-bar-value"><strong>55%</strong> · avg ₹285/mo</span></div>
+    </div>
+    <div class="gp-bar-row">
+      <span class="gp-bar-region">Indore</span>
+      <div class="gp-bar-line"><div class="gp-bar-track"><span class="gp-bar-fill" style="width:60%"></span></div><span class="gp-bar-value"><strong>60%</strong> · avg ₹240/mo</span></div>
+    </div>
+    <div class="gp-bar-row">
+      <span class="gp-bar-region">Gwalior</span>
+      <div class="gp-bar-line"><div class="gp-bar-track"><span class="gp-bar-fill" style="width:53%"></span></div><span class="gp-bar-value"><strong>53%</strong> · avg ₹161/mo</span></div>
+    </div>
+    <div class="gp-bar-row">
+      <span class="gp-bar-region">Jabalpur</span>
+      <div class="gp-bar-line"><div class="gp-bar-track"><span class="gp-bar-fill" style="width:60%"></span></div><span class="gp-bar-value"><strong>60%</strong> · avg ₹146/mo</span></div>
+    </div>
+  </div>
+
+  <div class="gp-subhead">Who wants what</div>
+  <div class="gp-profile-grid">
+    <div class="gp-profile-row"><div class="kind">Business loan</div><div class="who">Mostly shop owners (66%), some farmers (21%)</div></div>
+    <div class="gp-profile-row"><div class="kind">Personal loan</div><div class="who">Shop owners (36%) and farmers (24%)</div></div>
+    <div class="gp-profile-row"><div class="kind">Group / JLG loan</div><div class="who">Shop owners (47%)</div></div>
+    <div class="gp-profile-row"><div class="kind">Farm equipment &amp; agri loans</div><div class="who">Almost entirely farmers (79–100%)</div></div>
+    <div class="gp-profile-row"><div class="kind">Vehicle loan</div><div class="who">Shop owners (31%), spread across the rest</div></div>
+    <div class="gp-profile-row"><div class="kind">Shop insurance</div><div class="who">Shop owners (96%)</div></div>
+    <div class="gp-profile-row"><div class="kind">Health &amp; life insurance</div><div class="who">Split between farmers and shop owners</div></div>
+    <div class="gp-profile-row"><div class="kind">Crop &amp; livestock insurance</div><div class="who">Entirely farmers (100%)</div></div>
+  </div>
+</div>
+
+<div class="wrap gp-section">
+  <h2>Four customer personas</h2>
+  <p class="gp-lede">The segments the research surfaced, used to shape messaging and the agent-training script.</p>
+  <div class="gp-personas">
+    <div class="gp-persona">
+      <h3>Traditionalists</h3>
+      <p>Conservative rural consumers who rely on conventional channels to make purchase decisions. Necessity drives most decisions, and they typically buy the cheapest offering available.</p>
+    </div>
+    <div class="gp-persona">
+      <h3>Steady Climbers</h3>
+      <p>They aspire to a more comfortable lifestyle and want to enhance their social standing among peers — and strive to do so by buying branded products and services.</p>
+    </div>
+    <div class="gp-persona">
+      <h3>Young Enthusiasts</h3>
+      <p>Rural consumers aged 18–28 who make extensive use of digital technology and buy branded products to enhance their social image. They powerfully influence other segments' decisions.</p>
+    </div>
+    <div class="gp-persona">
+      <h3>Village Elites</h3>
+      <p>Progressive rural consumers with high education and awareness levels. They expect the best in product quality, features and service.</p>
+    </div>
+  </div>
+</div>
+
+<div class="wrap gp-section">
+  <h2>The purchase journey</h2>
+  <p class="gp-lede">Six stages, designed around a local agent rather than a self-serve app.</p>
+  <div class="gp-journey">
+    <div class="gp-journey-step">
+      <div class="gp-journey-num">01 · AWARENESS</div>
+      <h4>Local, in-language, relatable</h4>
+      <p>Customers get a deep understanding of the product through events organized locally by the on-ground team, in vernacular language, with simple, customised messaging.</p>
+    </div>
+    <div class="gp-journey-step">
+      <div class="gp-journey-num">02 · CONSIDERATION</div>
+      <h4>Products built for this market</h4>
+      <p>A tailored value proposition for the rural market — products customised specifically for the target customer — to make the purchase decision easier.</p>
+    </div>
+    <div class="gp-journey-step">
+      <div class="gp-journey-num">03 · VALIDATION</div>
+      <h4>Trusted local voices</h4>
+      <p>Village heads act as trusted advisors; BC agents are trained to serve as informed advisors who validate the purchase.</p>
+    </div>
+    <div class="gp-journey-step">
+      <div class="gp-journey-num">04 · PURCHASE</div>
+      <h4>Agent-assisted, chatbot-backed</h4>
+      <p>Customers buy through the terminal with the BC agent's help, with CRM and chatbot assistance for any friction in the process.</p>
+    </div>
+    <div class="gp-journey-step">
+      <div class="gp-journey-num">05 · EXPERIENCE</div>
+      <h4>Support at the point of need</h4>
+      <p>BC agents assist with claims or deposit challenges; ease of use, accessibility, and a customer success desk gather insights to keep improving.</p>
+    </div>
+    <div class="gp-journey-step">
+      <div class="gp-journey-num">06 · ADVOCACY</div>
+      <h4>Village heads as advocates</h4>
+      <p>Village heads and BC agents are nurtured as advocates, leveraging word of mouth and delivering on the brand promise to win loyalty.</p>
+    </div>
+  </div>
+</div>
+
+<div class="wrap gp-section" style="border-bottom:none;">
+  <h2>Outcome</h2>
+  <div class="gp-outcome">
+    <span class="num">3 mo</span>
+    <span class="label">from 1,154 prospect interviews to a live pilot — then a national rollout across 22 developers and 10+ executives.</span>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <h2>Let&rsquo;s Build Something That Matters.</h2>
+      <div class="footer-links">
+        <a href="mailto:srijan.pgp18151@iimkashipur.ac.in">Email</a>
+        <a class="icon-link" href="https://www.linkedin.com/in/srijanchauhan/" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          LinkedIn ↗
+        </a>
+        <a class="icon-link" href="https://github.com/SrijanChauhan" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .31.21.67.8.56A10.51 10.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+          GitHub ↗
+        </a>
+        <a class="icon-link" href="https://www.instagram.com/srijanchauhan/" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          Instagram ↗
+        </a>
+        <a href="tel:+919148529555">+91 9148529555</a>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>© 2026 Srijan Chauhan</span>
+      <span>Built with care, shipped like a product.</span>
+    </div>
+  </div>
+</footer>
+
+<audio id="ambient" preload="none"></audio>
+<script src="assets/music.js"></script>
+<script src="assets/nav.js"></script>
+<script src="assets/story-modal.js"></script>
+
+</body>
+</html>

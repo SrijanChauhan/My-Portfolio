@@ -52,10 +52,10 @@
     });
   }
 
-  function open(id) {
+  function open(id, startIndex) {
     photos = PHOTO_STORIES[id];
     if (!photos || !photos.length) return;
-    index = 0;
+    index = startIndex && startIndex > 0 && startIndex < photos.length ? startIndex : 0;
     barsEl.innerHTML = photos.map(() => '<span class="photo-story-bar"><span class="photo-story-bar-fill"></span></span>').join('');
     render();
     lastFocused = document.activeElement;
@@ -78,15 +78,16 @@
   }
 
   triggers.forEach(trigger => {
+    const startIndex = parseInt(trigger.dataset.storyIndex, 10) || 0;
     trigger.addEventListener('click', (e) => {
       e.stopPropagation();
-      open(trigger.dataset.story);
+      open(trigger.dataset.story, startIndex);
     });
     trigger.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         e.stopPropagation();
-        open(trigger.dataset.story);
+        open(trigger.dataset.story, startIndex);
       }
     });
   });
@@ -258,8 +259,12 @@
     project.setAttribute('aria-haspopup', 'dialog');
     project.classList.add('project-clickable');
 
-    project.addEventListener('click', () => open(project));
+    project.addEventListener('click', (e) => {
+      if (e.target.closest('.project-media-hero, .photo-story-trigger')) return;
+      open(project);
+    });
     project.addEventListener('keydown', (e) => {
+      if (e.target.closest('.project-media-hero, .photo-story-trigger')) return;
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         open(project);
