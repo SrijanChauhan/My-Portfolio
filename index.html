@@ -14,7 +14,8 @@
 
 <header>
   <nav class="wrap">
-    <a href="index.html" class="logo">
+    <div class="logo-group">
+      <button type="button" class="mirror-btn" aria-pressed="false" aria-label="Spin the mirror ball">
       <svg class="mirrorball" width="26" height="26" viewBox="0 0 22 22" aria-hidden="true">
         <defs>
           <clipPath id="ballClip"><circle cx="11" cy="11" r="8.5"/></clipPath>
@@ -37,9 +38,10 @@
 
         <circle cx="11" cy="11" r="9.6" fill="#fff" opacity=".1" filter="url(#bigGlow)"/>
 
-        <g clip-path="url(#ballClip)">
+        <g clip-path="url(#ballClip)" class="mirror-face">
+          <animateTransform id="mirrorSpin" attributeName="transform" type="rotate" from="0 11 11" to="360 11 11" dur="2.2s" repeatCount="indefinite" begin="indefinite"/>
           <g>
-            <animateTransform attributeName="transform" type="translate" from="0 0" to="-4.4 0" dur="1.6s" repeatCount="indefinite"/>
+            <animateTransform id="facetShimmer" attributeName="transform" type="translate" from="0 0" to="-4.4 0" dur="1.6s" repeatCount="indefinite"/>
             <rect x="-15" y="-15" width="52" height="52" fill="url(#facetPattern)"/>
           </g>
           <rect x="2.5" y="2.5" width="17" height="17" fill="url(#sphereShade)"/>
@@ -56,8 +58,9 @@
         <path d="M18.6,17.4 Q19.15,17.95 19.7,18 Q19.15,18.05 18.6,18.6 Q18.55,18.05 18,18 Q18.55,17.95 18.6,17.4 Z" fill="#fff" opacity=".7"/>
         <path d="M6.6,20 Q7,20.4 7.4,20.45 Q7,20.5 6.6,20.9 Q6.55,20.5 6.15,20.45 Q6.55,20.4 6.6,20 Z" fill="#fff" opacity=".6"/>
       </svg>
-      Srijan Chauhan
-    </a>
+      </button>
+      <a href="index.html" class="logo">Srijan Chauhan</a>
+    </div>
     <div class="nav-group">
       <div class="navlinks" id="navlinks">
         <a href="#work">Work</a>
@@ -105,7 +108,7 @@
   <div class="hero-stats">
     <div class="stat"><div class="num">6+</div><div class="label">YEARS IN PRODUCT</div></div>
     <div class="stat"><div class="num">9+</div><div class="label">PRODUCTS SHIPPED</div></div>
-    <div class="stat"><div class="num">37.5%</div><div class="label">KEY METRIC MOVED</div></div>
+    <div class="stat"><div class="num">33.75%</div><div class="label">KEY METRIC MOVED</div></div>
     <div class="stat"><div class="num">22+</div><div class="label">TEAMS LED</div></div>
   </div>
 </section>
@@ -134,23 +137,10 @@
             <span class="tag">Fintech</span>
             <span class="tag">Growth</span>
           </div>
-          <div class="impact"><span class="num">50%</span><span class="label">checkout drop-off, down from 80% — 37.5% below benchmark</span></div>
+          <div class="impact"><span class="num">53%</span><span class="label">checkout drop-off, down from 80% — 33.75% below benchmark</span></div>
         </div>
-        <div class="project-media">
-          <svg viewBox="0 0 400 300" role="img" aria-label="Checkout drop-off falling from 80% to 50% across three iterations">
-            <text x="30" y="34" class="chart-title">CHECKOUT DROP-OFF</text>
-            <line x1="30" y1="240" x2="370" y2="240" class="chart-axis"/>
-            <path d="M70,80 L205,110 L340,140" class="chart-line"/>
-            <circle cx="70" cy="80" r="5" class="chart-dot"/>
-            <circle cx="205" cy="110" r="5" class="chart-dot"/>
-            <circle cx="340" cy="140" r="5" class="chart-dot chart-dot-end"/>
-            <text x="70" y="64" class="chart-value" text-anchor="middle">80%</text>
-            <text x="205" y="94" class="chart-value" text-anchor="middle">65%</text>
-            <text x="340" y="124" class="chart-value chart-value-end" text-anchor="middle">50%</text>
-            <text x="70" y="262" class="chart-tick" text-anchor="middle">Iter 1</text>
-            <text x="205" y="262" class="chart-tick" text-anchor="middle">Iter 2</text>
-            <text x="340" y="262" class="chart-tick" text-anchor="middle">Iter 3</text>
-          </svg>
+        <div class="project-media project-media-brand">
+          <img src="assets/images/droompay-checkout.svg" alt="DroomPay checkout redesign: six payment rails added, ₹18 Cr cleared">
         </div>
       </div>
     </div>
@@ -321,8 +311,18 @@
       </div>
       <div class="footer-col">
         <div class="eyebrow">Connect</div>
-        <a href="https://www.linkedin.com/in/srijanchauhan/" target="_blank" rel="noopener">LinkedIn ↗</a>
-        <a href="https://github.com/SrijanChauhan" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="icon-link" href="https://www.linkedin.com/in/srijanchauhan/" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          LinkedIn ↗
+        </a>
+        <a class="icon-link" href="https://github.com/SrijanChauhan" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .31.21.67.8.56A10.51 10.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+          GitHub ↗
+        </a>
+        <a class="icon-link" href="https://www.instagram.com/srijanchauhan/" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          Instagram ↗
+        </a>
         <a href="mailto:srijan.pgp18151@iimkashipur.ac.in">Email ↗</a>
         <a href="tel:+919148529555">+91 9148529555</a>
       </div>
@@ -362,6 +362,7 @@
 <audio id="ambient" preload="none"></audio>
 <script src="assets/music.js"></script>
 <script src="assets/nav.js"></script>
+<script src="assets/story-modal.js"></script>
 
 </body>
 </html>

@@ -18,6 +18,38 @@
   });
 })();
 
+/* ── MIRROR BALL TOGGLE ───────────────────────────────── */
+(function () {
+  const btn = document.querySelector('.mirror-btn');
+  const spinAnim = btn && btn.querySelector('#mirrorSpin');
+  const shimmerAnim = btn && btn.querySelector('#facetShimmer');
+  if (!btn || !spinAnim || !shimmerAnim) return;
+
+  btn.addEventListener('click', () => {
+    const spinning = btn.getAttribute('aria-pressed') === 'true';
+    btn.setAttribute('aria-pressed', spinning ? 'false' : 'true');
+
+    // Only the ball's face (facets + shading) rotates, driven by SMIL,
+    // not the whole icon — rotating the outline/glow/sparkles too made
+    // the highlight swing in a circle, which read as sliding, not spinning.
+    if (spinning) {
+      spinAnim.endElement();
+      shimmerAnim.beginElement();
+    } else {
+      shimmerAnim.endElement();
+      spinAnim.beginElement();
+    }
+
+    btn.classList.remove('popped');
+    void btn.offsetWidth; // restart the pop animation even on rapid clicks
+    btn.classList.add('popped');
+  });
+
+  btn.addEventListener('animationend', (e) => {
+    if (e.animationName === 'mirror-pop') btn.classList.remove('popped');
+  });
+})();
+
 /* ── SECTION RAIL (home page only) ───────────────────── */
 (function () {
   const rail = document.querySelector('.rail');

@@ -5,6 +5,8 @@
    ───────────────────────────────────────────────────────────── */
 
 const PLAYLIST = [
+  { title: "Lovebomb", artist: "The Neighbourhood", src: "assets/audio/The Neighbourhood - Lovebomb (Official Audio).mp3" },
+  { title: "The Night Game", artist: "The Outfield", src: "assets/audio/the night game - the outfield.mp3" },
   { title: "Aperture", artist: "Harry Styles", src: "assets/audio/Aperture - Harry Styles.mp3" }
 ];
 
