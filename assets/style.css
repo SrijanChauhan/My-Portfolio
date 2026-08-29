@@ -292,13 +292,38 @@ body.story-modal-open{overflow:hidden;}
 .project-media-brand{background:none; padding:0;}
 .project-media-brand svg{width:100%; height:100%; display:block;}
 
-/* LIVE APP EMBED — the Cadence project media is the actual running app
-   (react-native-web export on GitHub Pages), not a mockup, so it keeps the
-   phone's own portrait aspect ratio instead of the card's default 4:3. */
-.project-media-live{
-  aspect-ratio:9/17.5; background:#0d0d16; align-self:center; max-height:640px;
+/* LIVE APP TEASER — the Cadence card shows its own brand graphic (kept
+   at the same 4:3 rhythm as every other project-media) with a "Try it
+   live" CTA; the actual running app (react-native-web export on GitHub
+   Pages) only loads once the visitor opens the popup below. */
+.live-app-trigger{
+  position:relative; width:100%; cursor:pointer;
+  font:inherit; color:inherit; padding:0; appearance:none; -webkit-appearance:none;
 }
-.project-media-live iframe{width:100%; height:100%; border:0; display:block;}
+.live-app-trigger:hover svg{filter:brightness(1.06);}
+.live-app-cta{
+  position:absolute; left:14px; bottom:14px; z-index:1;
+  font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size:12px; font-weight:700; letter-spacing:.02em; color:#0b0d0a;
+  padding:6px 12px; border-radius:20px; background:#D6FF3F;
+}
+
+/* LIVE APP MODAL — the popup that hosts the actual app, phone-shaped,
+   torn down on close so nothing keeps running in the background. */
+.live-app-modal{position:fixed; inset:0; z-index:110; display:flex; align-items:center; justify-content:center; padding:24px;}
+.live-app-modal[hidden]{display:none;}
+.live-app-backdrop{position:absolute; inset:0; background:rgba(6,7,9,.75); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px);}
+.live-app-panel{
+  position:relative; z-index:1; width:min(400px, 90vw); aspect-ratio:9/17.5; max-height:88vh;
+  background:#0d0d16; border-radius:22px; overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.12);
+}
+.live-app-frame, .live-app-frame iframe{width:100%; height:100%; border:0; display:block;}
+.live-app-close{
+  position:absolute; top:12px; right:12px; z-index:2;
+  width:32px; height:32px; border-radius:50%; border:none;
+  background:rgba(0,0,0,.45); color:#fff; font-size:20px; line-height:1; cursor:pointer;
+}
 
 /* PHOTO STORY TRIGGER — any element that opens the full-screen photo
    viewer (a project-media hero on index, gallery thumbnails on a case

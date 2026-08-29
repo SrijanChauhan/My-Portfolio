@@ -1,3 +1,67 @@
+/* ── LIVE APP MODAL — click a project's live-app teaser to try the real
+   app in a popup, phone-shaped, instead of embedding it inline in the
+   card. The iframe is only created when the modal opens (and torn down
+   on close) so nothing loads, plays audio, or runs a timer in the
+   background until the visitor actually asks for it. ───────────────── */
+(function () {
+  const triggers = document.querySelectorAll('.live-app-trigger');
+  if (!triggers.length) return;
+
+  const modal = document.createElement('div');
+  modal.className = 'live-app-modal';
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
+  modal.hidden = true;
+  modal.innerHTML =
+    '<div class="live-app-backdrop"></div>' +
+    '<div class="live-app-panel">' +
+      '<button type="button" class="live-app-close" aria-label="Close">&times;</button>' +
+      '<div class="live-app-frame"></div>' +
+    '</div>';
+  document.body.appendChild(modal);
+
+  const frameWrap = modal.querySelector('.live-app-frame');
+  const closeBtn  = modal.querySelector('.live-app-close');
+  const backdrop  = modal.querySelector('.live-app-backdrop');
+
+  let lastFocused = null;
+
+  function open(url, title) {
+    const iframe = document.createElement('iframe');
+    iframe.src = url;
+    iframe.title = title || 'Live app';
+    iframe.setAttribute('allow', 'geolocation; web-share; autoplay');
+    iframe.loading = 'eager';
+    frameWrap.innerHTML = '';
+    frameWrap.appendChild(iframe);
+
+    lastFocused = document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add('story-modal-open');
+    closeBtn.focus();
+  }
+
+  function close() {
+    modal.hidden = true;
+    frameWrap.innerHTML = '';
+    document.body.classList.remove('story-modal-open');
+    if (lastFocused) lastFocused.focus();
+  }
+
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      open(trigger.dataset.appUrl, trigger.dataset.appTitle);
+    });
+  });
+
+  closeBtn.addEventListener('click', close);
+  backdrop.addEventListener('click', close);
+  document.addEventListener('keydown', (e) => {
+    if (!modal.hidden && e.key === 'Escape') close();
+  });
+})();
+
 /* ── PHOTO STORY — click a project's photo collage to page through the
    field-research photos full-screen, Instagram-story style: images only,
    no captions, tap/arrow to advance. ───────────────────────────────── */
@@ -260,11 +324,11 @@
     project.classList.add('project-clickable');
 
     project.addEventListener('click', (e) => {
-      if (e.target.closest('.project-media-hero, .photo-story-trigger')) return;
+      if (e.target.closest('.project-media-hero, .photo-story-trigger, .live-app-trigger')) return;
       open(project);
     });
     project.addEventListener('keydown', (e) => {
-      if (e.target.closest('.project-media-hero, .photo-story-trigger')) return;
+      if (e.target.closest('.project-media-hero, .photo-story-trigger, .live-app-trigger')) return;
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         open(project);
