@@ -352,14 +352,6 @@ body.story-modal-open{overflow:hidden;}
 .cd-value-label{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:.08em; fill:rgba(255,255,255,.55);}
 .cd-bar{fill:#D6FF3F;}
 
-.gp-title{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:17px; font-weight:700; letter-spacing:.04em; fill:#fff;}
-.gp-subtitle{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10px; letter-spacing:.14em; fill:rgba(255,255,255,.7);}
-.gp-link{stroke:rgba(255,255,255,.35); stroke-width:1.5;}
-.gp-node{fill:#fff; opacity:.9;}
-.gp-hub{fill:#fff;}
-.gp-hub-label{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:9px; letter-spacing:.06em; fill:#8f2a22; font-weight:700;}
-.gp-stat{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:25px; font-weight:700; fill:#fff;}
-.gp-stat-label{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10px; letter-spacing:.03em; fill:rgba(255,255,255,.85);}
 .meta-row{
   display:flex; gap:10px; flex-wrap:wrap; align-items:center;
   font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:12px; color:var(--ink-soft); margin-bottom:14px;
@@ -704,8 +696,21 @@ footer h2{
 .gp-gallery .photo-story-trigger:hover img{transform:scale(1.04); filter:brightness(1.08);}
 .gp-gallery .photo-story-trigger:first-child{grid-column:span 2; grid-row:span 2;}
 
+/* Small colored icon badges used throughout the case-study page —
+   stat tiles, personas, journey steps, and profile rows each get one,
+   sized and shaped per context via the modifier classes below. */
+.gp-icon-badge{
+  display:flex; align-items:center; justify-content:center; flex:none;
+  color:#c9483a; background:rgba(201,72,58,.12);
+}
+.gp-persona .gp-icon-badge{color:var(--accent, #c9483a); background:color-mix(in srgb, var(--accent, #c9483a) 15%, transparent);}
+.gp-icon-badge svg{width:60%; height:60%;}
+.gp-icon-sm{width:34px; height:34px; border-radius:9px; margin-bottom:12px;}
+.gp-icon-round{width:40px; height:40px; border-radius:50%; margin-bottom:14px;}
+.gp-persona > .gp-icon-badge{width:44px; height:44px; border-radius:12px; margin-bottom:14px;}
+
 .gp-stats{display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; margin-bottom:44px;}
-.gp-stat{padding:18px 20px; border:1px solid var(--line); border-radius:8px;}
+.gp-stat{padding:18px 20px; border:1px solid var(--line); border-radius:8px; display:flex; flex-direction:column;}
 .gp-stat .num{font-size:26px; font-weight:700; color:var(--ink); display:block;}
 .gp-stat .label{font-size:12px; color:var(--ink-soft);}
 
@@ -737,8 +742,16 @@ footer h2{
 .gp-single-bars .gp-bar-value strong{color:var(--ink); font-weight:600;}
 
 .gp-personas{display:grid; grid-template-columns:repeat(2, 1fr); gap:18px;}
-.gp-persona{padding:22px; border:1px solid var(--line); border-radius:8px;}
-.gp-persona h3{font-size:16px; font-weight:600; margin-bottom:8px; color:var(--ink);}
+.gp-persona{
+  padding:22px; border:1px solid var(--line); border-radius:8px; border-top:3px solid var(--accent, #c9483a);
+  background:linear-gradient(180deg, color-mix(in srgb, var(--accent, #c9483a) 6%, transparent), transparent 40%);
+}
+.gp-persona h3{font-size:16px; font-weight:600; margin-bottom:6px; color:var(--ink);}
+.gp-persona-trait{
+  display:inline-block; font-size:11px; font-weight:600; letter-spacing:.03em;
+  color:var(--accent, #c9483a); background:color-mix(in srgb, var(--accent, #c9483a) 14%, transparent);
+  padding:3px 10px; border-radius:20px; margin-bottom:12px;
+}
 .gp-persona p{font-size:14px; color:var(--ink-soft); line-height:1.65;}
 
 .gp-journey{display:grid; grid-template-columns:repeat(3, 1fr); gap:24px 20px;}
@@ -748,7 +761,12 @@ footer h2{
 .gp-journey-step p{font-size:13px; color:var(--ink-soft); line-height:1.6;}
 
 .gp-profile-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; max-width:760px;}
-.gp-profile-row{padding:14px 16px; border:1px solid var(--line); border-radius:8px;}
+.gp-profile-row{display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border:1px solid var(--line); border-radius:8px;}
+.gp-profile-icon{
+  flex:none; width:30px; height:30px; border-radius:8px; margin-top:1px;
+  display:flex; align-items:center; justify-content:center; color:#c9483a; background:rgba(201,72,58,.12);
+}
+.gp-profile-icon svg{width:60%; height:60%;}
 .gp-profile-row .kind{font-size:13px; font-weight:600; color:var(--ink); margin-bottom:4px;}
 .gp-profile-row .who{font-size:13px; color:var(--ink-soft);}
 
