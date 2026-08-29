@@ -292,6 +292,14 @@ body.story-modal-open{overflow:hidden;}
 .project-media-brand{background:none; padding:0;}
 .project-media-brand svg{width:100%; height:100%; display:block;}
 
+/* LIVE APP EMBED — the Cadence project media is the actual running app
+   (react-native-web export on GitHub Pages), not a mockup, so it keeps the
+   phone's own portrait aspect ratio instead of the card's default 4:3. */
+.project-media-live{
+  aspect-ratio:9/17.5; background:#0d0d16; align-self:center; max-height:640px;
+}
+.project-media-live iframe{width:100%; height:100%; border:0; display:block;}
+
 /* PHOTO STORY TRIGGER — any element that opens the full-screen photo
    viewer (a project-media hero on index, gallery thumbnails on a case
    study page). */
