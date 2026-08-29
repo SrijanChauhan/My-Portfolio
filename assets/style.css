@@ -292,21 +292,36 @@ body.story-modal-open{overflow:hidden;}
 .project-media-brand{background:none; padding:0;}
 .project-media-brand svg{width:100%; height:100%; display:block;}
 
-/* LIVE APP TEASER — the Cadence card shows its own brand graphic (kept
-   at the same 4:3 rhythm as every other project-media) with a "Try it
-   live" CTA; the actual running app (react-native-web export on GitHub
-   Pages) only loads once the visitor opens the popup below. */
+/* LIVE APP TEASER — the Cadence card is just its wordmark and a "Try
+   it" button (kept at the same 4:3 rhythm as every other project-media),
+   at the normal card size; the actual running app (react-native-web
+   export on GitHub Pages) only loads once the visitor opens the popup
+   below, via the same red the site uses for its hero-stat KPIs, at
+   low opacity so it reads as a call to action, not another stat. */
 .live-app-trigger{
   position:relative; width:100%; cursor:pointer;
-  font:inherit; color:inherit; padding:0; appearance:none; -webkit-appearance:none;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+  background:#0b0d0a; font:inherit; color:inherit; padding:24px; appearance:none; -webkit-appearance:none;
+  transition:background .15s;
 }
-.live-app-trigger:hover svg{filter:brightness(1.06);}
-.live-app-cta{
-  position:absolute; left:14px; bottom:14px; z-index:1;
+.live-app-trigger:hover{background:#111309;}
+.cadence-logo{
   font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size:12px; font-weight:700; letter-spacing:.02em; color:#0b0d0a;
-  padding:6px 12px; border-radius:20px; background:#D6FF3F;
+  font-size:26px; font-weight:700; letter-spacing:.06em; color:#D6FF3F;
 }
+.cadence-tagline{
+  font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size:13px; color:rgba(255,255,255,.55); margin-bottom:14px;
+}
+.live-app-btn{
+  font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size:14px; font-weight:600; letter-spacing:.02em; color:#fff;
+  padding:10px 30px; border-radius:20px;
+  background:rgba(220,38,38,.22); border:1px solid rgba(220,38,38,.55);
+  backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  transition:background .15s, border-color .15s;
+}
+.live-app-trigger:hover .live-app-btn{background:rgba(220,38,38,.38); border-color:rgba(220,38,38,.85);}
 
 /* LIVE APP MODAL — the popup that hosts the actual app, phone-shaped,
    torn down on close so nothing keeps running in the background. */
@@ -367,15 +382,6 @@ body.story-modal-open{overflow:hidden;}
 .photo-story-zone{position:absolute; top:0; bottom:0; width:35%; border:none; background:none; cursor:pointer; padding:0;}
 .photo-story-prev{left:0;}
 .photo-story-next{right:0;}
-
-.cd-title{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:19px; font-weight:700; letter-spacing:.08em; fill:#D6FF3F;}
-.cd-subtitle{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:.12em; fill:rgba(255,255,255,.5);}
-.cd-arc-track{fill:none; stroke:#242a1a; stroke-width:6; stroke-linecap:round;}
-.cd-arc-fill{fill:none; stroke:#D6FF3F; stroke-width:6; stroke-linecap:round;}
-.cd-arc-dot{fill:#F2FFB0; stroke:#0b0d0a; stroke-width:3;}
-.cd-value{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:26px; font-weight:700; fill:#fff;}
-.cd-value-label{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; letter-spacing:.08em; fill:rgba(255,255,255,.55);}
-.cd-bar{fill:#D6FF3F;}
 
 .meta-row{
   display:flex; gap:10px; flex-wrap:wrap; align-items:center;
