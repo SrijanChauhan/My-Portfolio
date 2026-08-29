@@ -248,6 +248,21 @@ h1 em{font-style:italic; color:var(--signal); font-weight:400;}
 .story-modal-impact-num{font-size:26px; font-weight:700; color:#14171C;}
 .story-modal-impact-label{font-size:14px; color:#6b7280;}
 body.story-modal-open{overflow:hidden;}
+
+/* RESEARCH INSIGHTS — a project-specific "at a glance" panel, sourced
+   from the underlying market survey, appended after the impact line. */
+.story-modal-research{margin-top:28px; padding-top:24px; border-top:1px solid #ececec;}
+.story-modal-research:empty{margin-top:0; padding-top:0; border-top:none;}
+.research-label{font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9199a6; margin-bottom:14px;}
+.research-stats{display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; margin-bottom:18px;}
+.research-stat{display:flex; flex-direction:column;}
+.research-stat .num{font-size:20px; font-weight:700; color:#14171C;}
+.research-stat .label{font-size:12px; color:#6b7280;}
+.research-row{display:flex; flex-direction:column; gap:2px; padding:10px 0; border-top:1px solid #f2f2f3;}
+.research-row-label{font-size:12px; font-weight:600; color:#4b5563;}
+.research-row-value{font-size:14px; color:#2b2f36;}
+.research-personas{display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;}
+.research-journey{font-size:13px; color:#6b7280; margin-top:16px; letter-spacing:.01em;}
 .project .idx{font-family:'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:14px; color:var(--ink-soft); padding-top:6px;}
 .project-body{display:grid; grid-template-columns:1.1fr .9fr; gap:36px;}
 .project-media{

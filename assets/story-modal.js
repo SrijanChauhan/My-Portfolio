@@ -104,10 +104,36 @@
 })();
 
 /* ── STORY MODAL — click a project card to read the full write-up
-   in a plain, unbranded view (no chart art, just the text). ────── */
+   in a plain, unbranded view (no chart art, just the text). Projects
+   with a matching entry in RESEARCH_INSIGHTS get a "Research at a
+   glance" section appended, pulled from the underlying market study
+   rather than restated as marketing prose. ─────────────────────── */
 (function () {
   const projects = document.querySelectorAll('#work .project');
   if (!projects.length) return;
+
+  const RESEARCH_INSIGHTS = {
+    'grameen-pay': {
+      stats: [
+        { num: '1,154', label: 'people surveyed' },
+        { num: '4', label: 'regions' },
+        { num: '28', label: 'districts' },
+        { num: '7', label: 'focus groups' }
+      ],
+      rows: [
+        { label: 'Respondent mix', value: '338 shop owners · 325 farmers · 223 daily-wage earners · 106 salaried' },
+        { label: 'Microcredit appetite', value: '41–79% interested by region · avg ticket ₹55K–₹110K' },
+        { label: 'Insurance appetite', value: '53–79% interested by region · avg premium ₹146–285/mo' }
+      ],
+      personas: [
+        { name: 'Traditionalists', desc: 'Conservative, price-driven, buy through conventional channels' },
+        { name: 'Steady Climbers', desc: 'Aspire to a more comfortable lifestyle, buy branded for social standing' },
+        { name: 'Young Enthusiasts', desc: 'Ages 18–28, digitally fluent, influence other segments’ decisions' },
+        { name: 'Village Elites', desc: 'Progressive, highly educated, expect the best quality and service' }
+      ],
+      journey: ['Awareness', 'Consideration', 'Validation', 'Purchase', 'Experience', 'Advocacy']
+    }
+  };
 
   const modal = document.createElement('div');
   modal.className = 'story-modal';
@@ -123,18 +149,63 @@
       '<p class="story-modal-body"></p>' +
       '<div class="story-modal-tags"></div>' +
       '<div class="story-modal-impact"></div>' +
+      '<div class="story-modal-research"></div>' +
     '</div>';
   document.body.appendChild(modal);
 
-  const metaEl    = modal.querySelector('.story-modal-meta');
-  const titleEl   = modal.querySelector('.story-modal-title');
-  const bodyEl    = modal.querySelector('.story-modal-body');
-  const tagsEl    = modal.querySelector('.story-modal-tags');
-  const impactEl  = modal.querySelector('.story-modal-impact');
-  const closeBtn  = modal.querySelector('.story-modal-close');
-  const backdrop  = modal.querySelector('.story-modal-backdrop');
+  const metaEl     = modal.querySelector('.story-modal-meta');
+  const titleEl    = modal.querySelector('.story-modal-title');
+  const bodyEl     = modal.querySelector('.story-modal-body');
+  const tagsEl     = modal.querySelector('.story-modal-tags');
+  const impactEl   = modal.querySelector('.story-modal-impact');
+  const researchEl = modal.querySelector('.story-modal-research');
+  const closeBtn   = modal.querySelector('.story-modal-close');
+  const backdrop   = modal.querySelector('.story-modal-backdrop');
 
   let lastFocused = null;
+
+  function renderResearch(insights) {
+    researchEl.innerHTML = '';
+    if (!insights) return;
+
+    const label = document.createElement('div');
+    label.className = 'research-label';
+    label.textContent = 'Research at a glance';
+    researchEl.appendChild(label);
+
+    const statsWrap = document.createElement('div');
+    statsWrap.className = 'research-stats';
+    insights.stats.forEach(s => {
+      const stat = document.createElement('div');
+      stat.className = 'research-stat';
+      stat.innerHTML = '<span class="num">' + s.num + '</span><span class="label">' + s.label + '</span>';
+      statsWrap.appendChild(stat);
+    });
+    researchEl.appendChild(statsWrap);
+
+    insights.rows.forEach(r => {
+      const row = document.createElement('div');
+      row.className = 'research-row';
+      row.innerHTML = '<span class="research-row-label">' + r.label + '</span><span class="research-row-value">' + r.value + '</span>';
+      researchEl.appendChild(row);
+    });
+
+    const personasWrap = document.createElement('div');
+    personasWrap.className = 'research-personas';
+    insights.personas.forEach(p => {
+      const span = document.createElement('span');
+      span.className = 'story-modal-tag';
+      span.textContent = p.name;
+      span.title = p.desc;
+      personasWrap.appendChild(span);
+    });
+    researchEl.appendChild(personasWrap);
+
+    const journeyWrap = document.createElement('div');
+    journeyWrap.className = 'research-journey';
+    journeyWrap.textContent = insights.journey.join('  →  ');
+    researchEl.appendChild(journeyWrap);
+  }
 
   function open(project) {
     const meta = [...project.querySelectorAll('.meta-row > span:not(.dot)')]
@@ -166,6 +237,8 @@
       impactEl.appendChild(numSpan);
       impactEl.appendChild(labelSpan);
     }
+
+    renderResearch(RESEARCH_INSIGHTS[project.dataset.project]);
 
     lastFocused = document.activeElement;
     modal.hidden = false;
